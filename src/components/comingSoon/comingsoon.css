@@ -1,0 +1,136 @@
+
+.slick-dots li button:before {
+  color: #fff;
+}
+.slick-dots li.slick-active button:before {
+  color: #fff;
+}
+
+.poster{
+  margin: 40px -15px !important;
+}
+
+.poster .slick-slide{
+  padding: 0px 15px;
+}
+
+
+ul.slick-dots{
+  position: relative;
+  bottom: 0;
+}
+
+.slick-dotted.slick-slider{
+  margin-bottom: 0;
+}
+
+.poster .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.poster .content .gameName {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.poster .content .gamePrice {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.poster .content .gameDes {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.poster .content .gamePlatform button {
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 2px 10px;
+}
+
+.poster .content .gamePlatform button:first-child {
+  margin-right: 8px;
+}
+
+.poster .content .gamePlatform button:not(:first-child) {
+  margin: 0px 8px;
+}
+
+.poster .content .gameOrder button {
+  border: 1px solid #fff;
+  background-color: #fff;
+  font-weight: bold;
+  color: #6c5dd3;
+  padding: 8px 28px;
+  text-align: center;
+}
+
+.poster .content .gameOrder button:hover {
+  background-color: #6c5dd3;
+  border-color: #6c5dd3;
+  color: #fff;
+}
+
+.poster a {
+  color: #fff;
+}
+
+.poster .slide-item {
+  width: 540px;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  filter: drop-shadow(8px 10px 8px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
+  border-radius: 12px;
+  position: relative;
+}
+
+.poster .slide-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster .slide-item .content {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #6c5dd3;
+  filter: opacity(0%);
+  transition: all 400ms ease;
+  padding: 24px 32px;
+}
+
+.carousel .slide-item .content p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  opacity: 1;
+  color: #fff !important;
+}
+
+.poster .slide-item:hover > .content {
+  background: rgba(111, 111, 111, 0.8);
+  backdrop-filter: blur(5px);
+  filter: opacity(100%);
+}
+
+@media (max-width: 767.99px){
+  .poster .slick-slide{
+    padding: 0px 15px;
+  }
+}

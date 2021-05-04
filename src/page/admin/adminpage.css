@@ -1,0 +1,41 @@
+.show-content {
+  padding: 15px 250px !important;
+}
+
+.table {
+  color: #fff;
+}
+
+tbody tr:hover {
+  color: #fff !important;
+  background-color: #7466d5 !important;
+}
+
+tbody tr:nth-child(2n) {
+  background-color: #4b4b4b !important;
+}
+
+tbody tr:nth-child(2n):hover {
+  color: #fff !important;
+  background-color: #7466d5 !important;
+}
+
+tbody tr img {
+  width: 100%;
+}
+
+table .des {
+  width: 50%;
+}
+
+@media (max-width: 1366px) {
+  .show-content {
+    padding: 15px 16px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .admin-menu {
+    padding: 0px 25px !important;
+  }
+}

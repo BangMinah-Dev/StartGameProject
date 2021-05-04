@@ -1,0 +1,114 @@
+.login-box a{
+  color: #FFF;
+}
+
+.login-box a:hover{
+  color: #6c5dd3;
+}
+
+.logo-login {
+  width: 60px;
+}
+
+.login-box {
+  border: 1px solid #6c5dd3;
+  margin-top: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px #6c5dd3;
+  padding: 0;
+  color: #fff;
+}
+
+.login-box .title {
+  text-align: center;
+  font-size: 18px;
+  background-color: #6c5dd3;
+  padding: 15px 0px;
+}
+
+.login-box .form {
+  width: 50%;
+  margin: 25px auto;
+  color: #fff;
+}
+
+.login-box button {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #6c5dd3;
+  border-color: #6c5dd3 !important;
+}
+
+.login-box button:hover {
+  background-color: #5c4bce;
+  border-color: #5c4bce !important;
+}
+
+.login-box button:active {
+  background-color: #5c4bce !important;
+  border-color: #5c4bce !important;
+}
+
+.login-box button:focus {
+  background-color: #5c4bce !important;
+  border-color: #5c4bce !important;
+}
+
+.login-option {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-other {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-socials .fb-icon,
+.login-socials .gg-icon {
+  font-size: 30px;
+  margin: 20px;
+}
+
+.login-socials .fb-icon:hover,
+.login-socials .gg-icon:hover {
+  color: #5c4bce;
+  cursor: pointer;
+}
+
+.symbol{
+  border-left: 1px solid #FFF;
+}
+
+.text-bottom a{
+  color: #FFF;
+}
+
+.text-bottom a:hover{
+  color: #6c5dd3;
+}
+/*  */
+
+/*  */
+
+
+@media (max-width: 991.98px){
+  .symbol{
+      margin: 0px 15px !important;
+  }
+
+  .login-box .form {
+    width: 90%;
+  }
+}
+
+@media (max-width: 575.98px){
+  .title{
+      font-size: 20px;
+  }
+}

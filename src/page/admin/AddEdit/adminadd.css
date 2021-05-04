@@ -1,0 +1,9 @@
+.preview-image{
+  height: 254px;
+  overflow: hidden;
+}
+
+.preview-image img{
+  height: 100%;
+  object-fit: cover;
+}

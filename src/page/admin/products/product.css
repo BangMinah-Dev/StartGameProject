@@ -1,0 +1,73 @@
+table .des{
+  width: 300px !important;
+}
+
+table .des-text{
+  white-space: nowrap; 
+  width: 300px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  margin-bottom: 0px !important;
+}
+
+table .plat-text{
+  margin-bottom: 0px !important;
+  margin-right: 0px !important;
+}
+
+table .name-text{
+  max-width: 150px !important; 
+}
+
+table .name-text p{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  margin-bottom: 0px !important;
+}
+
+table thead tr{
+  height: 30px !important;
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+table th{
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+table td{
+  height: 50px;
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+table td img{
+  width: 150px;
+}
+
+.btn-addNew{
+  background-color: #6c5dd3 !important;
+  padding: 8px 24px;
+  border: 1px solid #6c5dd3;
+  border-radius: 4px;
+}
+
+.btn-addNew:hover{
+  background-color: #5c4bce !important;
+  border-color: #6c5dd3 !important;
+  filter: drop-shadow(0px 15px 8px rgba(0, 0, 0, 0.5));
+}
+
+.btn-addNew:focus{
+  outline: 0 !important;
+  border-color: #6c5dd3 !important;
+  box-shadow: none !important;
+}
+
+.btn-addNew:active{
+  outline: 0 !important;
+  border-color: #6c5dd3 !important;
+  box-shadow: none !important;
+}
