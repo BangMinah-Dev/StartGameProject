@@ -9,6 +9,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function NavbarCustom() {
   const [show, setShow] = useState(false);
@@ -71,7 +72,9 @@ export default function NavbarCustom() {
                   </div>
                 </Nav.Link>
                 <Nav.Link href="/login" className="user-icon">
-                  <FontAwesomeIcon className="icon menu-item" icon={faUser} />
+                  <Link to="/admin">
+                    <FontAwesomeIcon className="icon menu-item" icon={faUser} />
+                  </Link>
                 </Nav.Link>
               </div>
             </Nav>
