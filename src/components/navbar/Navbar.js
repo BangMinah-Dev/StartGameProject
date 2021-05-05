@@ -71,11 +71,11 @@ export default function NavbarCustom() {
                     <span>10</span>
                   </div>
                 </Nav.Link>
-                <Nav.Link href="/login" className="user-icon">
-                  <Link to="/admin">
+                <Link to="/admin">
+                  <Nav.Link href="/login" className="user-icon">
                     <FontAwesomeIcon className="icon menu-item" icon={faUser} />
-                  </Link>
-                </Nav.Link>
+                  </Nav.Link>
+                </Link>
               </div>
             </Nav>
           </Navbar.Collapse>
