@@ -71,10 +71,8 @@ export default function NavbarCustom() {
                     <span>10</span>
                   </div>
                 </Nav.Link>
-                <Link to="/admin">
-                  <Nav.Link href="/login" className="user-icon">
-                    <FontAwesomeIcon className="icon menu-item" icon={faUser} />
-                  </Nav.Link>
+                <Link to="/login">
+                  <FontAwesomeIcon className="icon menu-item" icon={faUser} />
                 </Link>
               </div>
             </Nav>

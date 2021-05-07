@@ -1,21 +1,23 @@
 import axios from "axios";
 
-// export const DOMAIN = "http://localhost:3000";
-export const DOMAIN = "https://startgamedata.herokuapp.com"
-const PRODUCTS_API = DOMAIN + "/products";
+export const DOMAIN = "http://localhost:3000";
+// export const DOMAIN = "https://startgamedata.herokuapp.com"
+const PRODUCTS_API = DOMAIN + "/products/";
 const COVER_API = DOMAIN + "/COVER";
 const COMINGSOON_API = DOMAIN + "/COMINGSOON";
 export const UPLOAD_PATH = DOMAIN + "/upload";
 
+// UPLOAD IMAGE
 export async function uploadFile(inputFile) {
   fetch(UPLOAD_PATH, {
     method: "POST",
     body: inputFile,
   }).then((res) => {
-    console.log(res)
-  })
+    console.log(res);
+  });
 }
 
+// ADD NEW PRODUCT
 export async function createProduct(inputData) {
   const res = await fetch(PRODUCTS_API, {
     method: "POST",
@@ -25,15 +27,24 @@ export async function createProduct(inputData) {
   return res;
 }
 
-export async function deleteProduct(inputData) {
-  const res = await fetch(PRODUCTS_API, {
-    method: "DELETE"
+// EDIT PRODUCT
+export async function editProduct(inputID, inputData) {
+  fetch(PRODUCTS_API + inputID, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(inputData),
   });
-  return res;
+}
+
+// DELETE PRODUCT
+export async function deleteProduct(inputID) {
+  fetch(PRODUCTS_API + inputID, {
+    method: "DELETE",
+  });
 }
 
 const apis = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://startgamedata.herokuapp.com",
   headers: { Authorization: "token" },
 });
 
@@ -71,12 +82,3 @@ export async function checkLogin(adminEmail, adminPassword) {
       return res;
     });
 }
-
-// ADD NEW PRODUCTS
-// export async function createProduct(inputData) {
-//   await axios({
-//     method: "POST",
-//     url: PRODUCTS_API,
-//     data: inputData,
-//   });
-// }

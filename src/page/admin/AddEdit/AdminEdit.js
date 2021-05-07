@@ -1,59 +1,92 @@
-import "./adminadd.css";
 import AdminMenu from "../AdminMenu";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { createProduct } from "../../../API/api";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectID,
+  selectProductImage,
+  selectName,
+  selectPrice,
+  selectCategory,
+  selectDiscount,
+  selectDescription,
+  selectWindows,
+  selectApple,
+  selectAndroid,
+  selectPlayStation,
+  selectWindowsIcon,
+  selectAppleIcon,
+  selectAndroidIcon,
+  selectPlayStationIcon,
+  updateProductImage,
+  updateName,
+  updatePrice,
+  updateCategory,
+  updateDiscount,
+  updateDescription,
+  updateWindows,
+  updateApple,
+  updateAndroid,
+  updatePlayStation,
+  updateWindowsIcon,
+  updateAppleIcon,
+  updateAndroidIcon,
+  updatePlayStationIcon,
+} from "../../../redux/sliceProductDetails";
+
 import { useHistory } from "react-router";
-import { uploadFile } from "../../../API/api";
-export default function AdminAdd() {
+import { uploadFile, editProduct, UPLOAD_PATH } from "../../../API/api";
+
+export default function AdminEdit() {
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  // STATE GIÁ TRỊ CÁC INPUT TRONG FORM
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productCategory, setProductCategory] = useState("");
-  const [discount, setDiscount] = useState(0);
-  const [description, setDescription] = useState("");
+  const productID = useSelector(selectID);
+  const productImage = useSelector(selectProductImage)
+  const productNameRedux = useSelector(selectName);
+  const productPriceRedux = useSelector(selectPrice);
+  const productCategoryRedux = useSelector(selectCategory);
+  const productDiscountRedux = useSelector(selectDiscount);
+  const productDescriptionRedux = useSelector(selectDescription);
   // PLATFORM
-  const [windows, setWindows] = useState("");
-  const [apple, setApple] = useState("");
-  const [android, setAndroid] = useState("");
-  const [playstation, setPlaystation] = useState("");
+  const windowsRedux = useSelector(selectWindowsIcon);
+  const appleRedux = useSelector(selectAppleIcon);
+  const androidRedux = useSelector(selectAndroidIcon);
+  const playstationRedux = useSelector(selectPlayStationIcon);
   // PLATFORM CHECK
-  const [isWindows, setIsWindows] = useState(false);
-  const [isApple, setIsApple] = useState(false);
-  const [isAndroid, setIsAndroid] = useState(false);
-  const [isPlayStation, setIsPlayStation] = useState(false);
+  const isWindowsRedux = useSelector(selectWindows);
+  const isAppleRedux = useSelector(selectApple);
+  const isAndroidRedux = useSelector(selectAndroid);
+  const isPlaystationRedux = useSelector(selectPlayStation);
 
   // IMAGE
   const [imageInfo, setImageInfo] = useState("");
   // STATE ĐA ĐƯỢC CHUYỂN THÀNH ĐƯỜNG DÂN LOCAL
   const [imagePreview, setImagePreview] = useState("");
 
-  // Lấy ra tên ảnh để lưu vào database
-  let imageName = imageInfo.name;
-
   let data = {
-    image: "/" + imageName,
-    name: productName,
-    price: productPrice,
-    category: productCategory,
-    windows: { value: isWindows, icon: windows },
-    apple: { value: isApple, icon: apple },
-    android: { value: isAndroid, icon: android },
-    playstation: { value: isPlayStation, icon: playstation },
-    discount: discount,
-    description: description,
+    image: "/" + productImage,
+    name: productNameRedux,
+    price: productPriceRedux,
+    category: productCategoryRedux,
+    windows: { value: isWindowsRedux, icon: windowsRedux },
+    apple: { value: isAppleRedux, icon: appleRedux },
+    android: { value: isAndroidRedux, icon: androidRedux },
+    playstation: { value: isPlaystationRedux, icon: playstationRedux },
+    discount: productDiscountRedux,
+    description: productDescriptionRedux,
   };
 
-  function addProduct() {
-    createProduct(data);
+  // EDIT PRODUCT
+  function updateProduct() {
+    editProduct(productID, data);
     history.push("/admin");
   }
 
   //
   function previewImage(event) {
     setImageInfo(event.target.files[0]);
+    dispatch(updateProductImage(event.target.files[0].name))
     if (event.target.files[0]) {
       setImagePreview(event.target.files[0]);
     }
@@ -74,48 +107,48 @@ export default function AdminAdd() {
 
   function checkWindows(event) {
     if (event.target.checked === true) {
-      setWindows(event.target.value);
-      setIsWindows(true);
+      dispatch(updateWindowsIcon(event.target.value));
+      dispatch(updateWindows(true));
     } else {
-      setWindows("");
-      setIsWindows(false);
+      dispatch(updateWindowsIcon(""));
+      dispatch(updateWindows(false));
     }
   }
 
   function checkApple(event) {
     if (event.target.checked === true) {
-      setApple(event.target.value);
-      setIsApple(true);
+      dispatch(updateAppleIcon(event.target.value));
+      dispatch(updateApple(true));
     } else {
-      setApple("");
-      setIsApple(false);
+      dispatch(updateAppleIcon(""));
+      dispatch(updateApple(false));
     }
   }
 
   function checkAndroid(event) {
     if (event.target.checked === true) {
-      setAndroid(event.target.value);
-      setIsAndroid(true);
+      dispatch(updateAndroidIcon(event.target.value));
+      dispatch(updateAndroid(true));
     } else {
-      setAndroid("");
-      setIsAndroid(false);
+      dispatch(updateAndroidIcon(""));
+      dispatch(updateAndroid(false));
     }
   }
 
   function checkPlayStation(event) {
     if (event.target.checked === true) {
-      setPlaystation(event.target.value);
-      setIsPlayStation(true);
+      dispatch(updatePlayStationIcon(event.target.value));
+      dispatch(updatePlayStation(true));
     } else {
-      setPlaystation("");
-      setIsPlayStation(false);
+      dispatch(updatePlayStationIcon(""));
+      dispatch(updatePlayStation(false));
     }
   }
 
   return (
     <div>
       <AdminMenu />
-      <h1 className="text-center">Thêm sản phẩm</h1>
+      <h1 className="text-center">Sửa sản phẩm</h1>
       <div className="show-content">
         <Form className="mt-3">
           <div className="row">
@@ -124,24 +157,28 @@ export default function AdminAdd() {
                 <Form.Label>Tên sản phẩm</Form.Label>
                 <Form.Control
                   type="text"
-                  defaultValue=""
-                  onChange={(event) => setProductName(event.target.value)}
+                  defaultValue={productNameRedux}
+                  onChange={(event) => dispatch(updateName(event.target.value))}
                 />
               </Form.Group>
               <Form.Group controlId="Giá sản phẩm">
                 <Form.Label>Giá sản phẩm</Form.Label>
                 <Form.Control
                   type="text"
-                  defaultValue=""
-                  onChange={(event) => setProductPrice(event.target.value)}
+                  defaultValue={productPriceRedux}
+                  onChange={(event) =>
+                    dispatch(updatePrice(event.target.value))
+                  }
                 />
               </Form.Group>
               <Form.Group controlId="Thể loại">
                 <Form.Label>Thể loại</Form.Label>
                 <Form.Control
                   type="text"
-                  defaultValue=""
-                  onChange={(event) => setProductCategory(event.target.value)}
+                  defaultValue={productCategoryRedux}
+                  onChange={(event) =>
+                    dispatch(updateCategory(event.target.value))
+                  }
                 />
               </Form.Group>
               <Form.Group className="d-flex">
@@ -154,7 +191,7 @@ export default function AdminAdd() {
                       name="group1"
                       type={type}
                       value="fab fa-windows"
-                      defaultChecked={false}
+                      defaultChecked={isWindowsRedux}
                       id={`inline-${type}-1`}
                       onChange={(event) => checkWindows(event)}
                     />
@@ -164,7 +201,7 @@ export default function AdminAdd() {
                       name="group1"
                       type={type}
                       value="fab fa-apple"
-                      defaultChecked={false}
+                      defaultChecked={isAppleRedux}
                       id={`inline-${type}-2`}
                       onChange={(event) => checkApple(event)}
                     />
@@ -174,7 +211,7 @@ export default function AdminAdd() {
                       name="group1"
                       type={type}
                       value="fab fa-google-play"
-                      defaultChecked={false}
+                      defaultChecked={isAndroidRedux}
                       id={`inline-${type}-3`}
                       onChange={(event) => checkAndroid(event)}
                     />
@@ -184,7 +221,7 @@ export default function AdminAdd() {
                       name="group1"
                       type={type}
                       value="fab fa-playstation"
-                      defaultChecked={false}
+                      defaultChecked={isPlaystationRedux}
                       id={`inline-${type}-4`}
                       onChange={(event) => checkPlayStation(event)}
                     />
@@ -195,9 +232,11 @@ export default function AdminAdd() {
                 <Form.Label>Giá giảm ( % )</Form.Label>
                 <Form.Control
                   type="number"
-                  defaultValue={0}
+                  defaultValue={productDiscountRedux}
                   min={0}
-                  onChange={(event) => setDiscount(event.target.value)}
+                  onChange={(event) =>
+                    dispatch(updateDiscount(event.target.value))
+                  }
                 />
               </Form.Group>
             </div>
@@ -209,11 +248,13 @@ export default function AdminAdd() {
                   onChange={(event) => previewImage(event)}
                 />
               </Form.Group>
-              {imageInfo === "" ? (
-                ""
+              {imagePreview === "" ? (
+                <div className="preview-image">
+                  <img src={UPLOAD_PATH + "/" + productImage} alt={productImage}></img>
+                </div>
               ) : (
                 <div className="preview-image">
-                  <img src={imagePreview} alt={imageName}></img>{" "}
+                  <img src={imagePreview} alt={productImage}></img>
                 </div>
               )}
               {imageInfo === "" ? (
@@ -231,13 +272,16 @@ export default function AdminAdd() {
             <Form.Label className="mt-3">Mô tả sản phẩm</Form.Label>
             <Form.Control
               as="textarea"
+              defaultValue={productDescriptionRedux}
               rows={3}
-              onChange={(event) => setDescription(event.target.value)}
+              onChange={(event) =>
+                dispatch(updateDescription(event.target.value))
+              }
             />
           </Form.Group>
 
-          <Button variant="primary" type="button" onClick={addProduct}>
-            THÊM SẢN PHẨM
+          <Button variant="primary" type="button" onClick={updateProduct}>
+            Chỉnh sửa
           </Button>
         </Form>
       </div>

@@ -5,11 +5,15 @@ import Tutorial from "../page/tutorial/Tutorial";
 import Categories from "../page/categories/categories";
 import LoginPage from "../page/login/Login";
 import AdminPage from "../page/admin/AdminPage";
-import AdminAdd from "../page/admin/AddEdit/AdminAdd"
+import AdminAdd from "../page/admin/AddEdit/AdminAdd";
+import AdminEdit from "../page/admin/AddEdit/AdminEdit";
 export default function router() {
   return (
     <Router>
       <Switch>
+        <Route path="/admin-edit">
+          <AdminEdit />
+        </Route>
         <Route path="/admin-add">
           <AdminAdd />
         </Route>

@@ -17,7 +17,9 @@ export default function NewArrival() {
 
   const productsList = product.map((item) => (
     <div className="new-item" key={item.id}>
-      <img src={UPLOAD_PATH + item.image} alt={item.name}></img>
+      <div className="picture">
+        <img src={UPLOAD_PATH + item.image} alt={item.name}></img>
+      </div>
       <div className="content">
         <a href="/">
           <h4>{item.name}</h4>
@@ -26,25 +28,25 @@ export default function NewArrival() {
           <p className="cate">{item.category}</p>
         </a>
         <p className="plat">
-          {item.windows === "" ? (
+          {item.windows.icon === "" ? (
             ""
           ) : (
-            <i className={`windows icon ${item.windows}`}></i>
+            <i className={`windows icon ${item.windows.icon}`}></i>
           )}
-          {item.playstation === "" ? (
+          {item.playstation.icon === "" ? (
             ""
           ) : (
-            <i className={`playstation icon ${item.playstation}`}></i>
+            <i className={`playstation icon ${item.playstation.icon}`}></i>
           )}
-          {item.android === "" ? (
+          {item.android.icon === "" ? (
             ""
           ) : (
-            <i className={`android icon ${item.android}`}></i>
+            <i className={`android icon ${item.android.icon}`}></i>
           )}
-          {item.apple === "" ? (
+          {item.apple.icon === "" ? (
             ""
           ) : (
-            <i className={`apple icon ${item.apple}`}></i>
+            <i className={`apple icon ${item.apple.icon}`}></i>
           )}
         </p>
         <div className="button-action">
