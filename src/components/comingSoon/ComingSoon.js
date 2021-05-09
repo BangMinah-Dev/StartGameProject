@@ -14,7 +14,7 @@ export default function ComingSoon() {
     initialSlide: 0,
     arrows: false,
     autoplaySpeed: 3000,
-    autoplay: true,
+    autoplay: false,
     responsive: [
       {
         breakpoint: 992,
@@ -39,7 +39,7 @@ export default function ComingSoon() {
   },[])
 
   const slideItem = product.map((item) => (
-    <div key={item.id} className="slide-item" to="/">
+    <div key={item.id} className="slide-item">
       <img
         src={UPLOAD_PATH + item.image}
         alt={item.name}

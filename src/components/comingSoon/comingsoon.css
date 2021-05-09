@@ -5,8 +5,12 @@
   color: #fff;
 }
 
-.slick-slide {
+/* .slick-slide {
   outline: none !important
+} */
+slick-slide,
+.slick-slide * {
+  outline: none !important;
 }
 
 .poster {
@@ -186,7 +190,7 @@ ul.slick-dots {
   .poster .content .gamePlatform button:first-child {
     margin-right: 6px;
   }
-  
+
   .poster .content .gamePlatform button:not(:first-child) {
     margin: 0px 6px;
   }
