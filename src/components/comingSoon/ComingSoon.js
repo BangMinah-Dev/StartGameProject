@@ -14,7 +14,7 @@ export default function ComingSoon() {
     initialSlide: 0,
     arrows: false,
     autoplaySpeed: 3000,
-    autoplay: false,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 992,

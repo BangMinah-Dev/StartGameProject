@@ -115,9 +115,9 @@ export default function AdminAdd() {
   return (
     <div>
       <AdminMenu />
-      <h1 className="text-center">Thêm sản phẩm</h1>
+      <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
       <div className="show-content">
-        <Form className="mt-3">
+        <Form className="mt-2">
           <div className="row">
             <div className="col-md-6">
               <Form.Group controlId="Tên sản phẩm">
