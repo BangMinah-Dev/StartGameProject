@@ -43,10 +43,10 @@
   vertical-align: 0.125rem !important;
 }
 
-.user-icon {
+/* .user-icon {
   padding: 8px 0px !important;
   margin-right: 0px !important;
-}
+} */
 
 .icon {
   font-size: 18px;
@@ -151,8 +151,11 @@ button.close span{
   }
 
   .user-icon{
-    margin: 0px 20px !important;
+    /* margin: 0px 20px !important; */
+    margin-bottom: 10px;
+    margin-left: 12px;
   }
+
   .search-icon-mobile {
     display: block;
     margin-right: 15px;

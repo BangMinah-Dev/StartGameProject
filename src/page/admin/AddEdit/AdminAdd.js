@@ -144,10 +144,10 @@ export default function AdminAdd() {
                   onChange={(event) => setProductCategory(event.target.value)}
                 />
               </Form.Group>
-              <Form.Group className="d-flex">
+              <Form.Group className="d-flex platfrom-label">
                 <Form.Label className="mr-2">Nền Tảng : </Form.Label>
                 {["checkbox"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-3">
+                  <div key={`inline-${type}`} className="mb-3 d-flex">
                     <Form.Check
                       inline
                       label="Windows"
@@ -180,7 +180,7 @@ export default function AdminAdd() {
                     />
                     <Form.Check
                       inline
-                      label="Play Station"
+                      label="PlayStation"
                       name="group1"
                       type={type}
                       value="fab fa-playstation"

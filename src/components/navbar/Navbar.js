@@ -64,7 +64,7 @@ export default function NavbarCustom() {
                 <Button className="search-icon-desktop" onClick={handleShow}>
                   <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
                 </Button>
-                <Nav.Link className="cart">
+                <Link to="/" className="cart nav-link">
                   <FontAwesomeIcon
                     className="icon menu-item"
                     icon={faShoppingCart}
@@ -72,9 +72,9 @@ export default function NavbarCustom() {
                   <div className="noti">
                     <span>10</span>
                   </div>
-                </Nav.Link>
+                </Link>
                 <Link to="/login" className="nav-link">
-                  <FontAwesomeIcon className="icon menu-item" icon={faUser} />
+                  <FontAwesomeIcon className="icon menu-item user-icon" icon={faUser} />
                 </Link>
               </div>
             </Nav>

@@ -5,6 +5,10 @@
   color: #fff;
 }
 
+.slick-slide {
+  outline: none !important
+}
+
 .poster {
   margin: 40px -15px !important;
 }
