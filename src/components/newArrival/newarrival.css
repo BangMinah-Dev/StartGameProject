@@ -174,7 +174,13 @@ button:focus{
   }
 }
 
-@media (max-width: 676px){
+@media (max-width: 576px){
+  .new-arrival{
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 442px){
   .new-arrival{
     grid-template-columns: auto;
   }

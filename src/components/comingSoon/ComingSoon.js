@@ -2,6 +2,7 @@ import "./comingsoon.css";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
 import { getComingSoon, UPLOAD_PATH} from "../../API/api"
+import { Link } from "react-router-dom";
 
 export default function ComingSoon() {
   var settings = {
@@ -38,15 +39,15 @@ export default function ComingSoon() {
   },[])
 
   const slideItem = product.map((item) => (
-    <a key={item.id} className="slide-item" href="/">
+    <div key={item.id} className="slide-item" to="/">
       <img
         src={UPLOAD_PATH + item.image}
         alt={item.name}
       ></img>
       <div className="content">
-        <div className="gameName">{item.name}</div>
-        <div className="gamePrice">$ {item.price}</div>
-        <div className="gameDes">{item.description}</div>
+        <div className="gameName"><Link to="/">{item.name}</Link></div>
+        <div className="gamePrice"><Link to="/">$ {item.price}</Link></div>
+        <div className="gameDes"><Link to="/">{item.description}</Link></div>
         <div className="gamePlatform mt-2 mb-2">
           {item.platform.map((plat) => (
             <button className="btn" key={plat.value}>
@@ -58,7 +59,7 @@ export default function ComingSoon() {
           <button className="btn">Đăng ký</button>
         </div>
       </div>
-    </a>
+    </div>
   ));
   return (
     <div className="container">

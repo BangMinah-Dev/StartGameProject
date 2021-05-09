@@ -1,4 +1,3 @@
-
 .slick-dots li button:before {
   color: #fff;
 }
@@ -6,21 +5,20 @@
   color: #fff;
 }
 
-.poster{
+.poster {
   margin: 40px -15px !important;
 }
 
-.poster .slick-slide{
+.poster .slick-slide {
   padding: 0px 15px;
 }
 
-
-ul.slick-dots{
+ul.slick-dots {
   position: relative;
   bottom: 0;
 }
 
-.slick-dotted.slick-slider{
+.slick-dotted.slick-slider {
   margin-bottom: 0;
 }
 
@@ -28,6 +26,7 @@ ul.slick-dots{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: #fff;
 }
 
 .poster .content .gameName {
@@ -112,25 +111,79 @@ ul.slick-dots{
   padding: 24px 32px;
 }
 
-.carousel .slide-item .content p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  opacity: 1;
-  color: #fff !important;
-}
-
 .poster .slide-item:hover > .content {
   background: rgba(111, 111, 111, 0.8);
   backdrop-filter: blur(5px);
   filter: opacity(100%);
+  cursor: auto;
 }
 
-@media (max-width: 767.99px){
-  .poster .slick-slide{
+@media (max-width: 767.99px) {
+  .poster .slick-slide {
     padding: 0px 15px;
+  }
+}
+
+@media (max-width: 442px) {
+  .poster .slide-item {
+    width: 540px;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    filter: drop-shadow(8px 10px 8px rgba(0, 0, 0, 0.25));
+    cursor: pointer;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .poster .slide-item .gameName {
+    font-size: 18px;
+  }
+  .poster .slide-item .gamePrice {
+    font-size: 16px;
+  }
+  .poster .slide-item .gameDes {
+    display: none;
+  }
+  .poster .content .gamePlatform {
+    margin: 0px;
+  }
+  .poster .content .gamePlatform button {
+    font-size: 12px;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 2px 10px;
+  }
+
+  .poster .slide-item .content {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #6c5dd3;
+    filter: opacity(0%);
+    transition: all 400ms ease;
+    padding: 8px 12px;
+  }
+
+  .poster .content .gameOrder button {
+    font-size: 12px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    font-weight: bold;
+    color: #6c5dd3;
+    padding: 8px 28px;
+    text-align: center;
+  }
+
+  .poster .content .gamePlatform button:first-child {
+    margin-right: 6px;
+  }
+  
+  .poster .content .gamePlatform button:not(:first-child) {
+    margin: 0px 6px;
   }
 }

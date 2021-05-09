@@ -73,7 +73,7 @@ export default function AdminEdit() {
     apple: { value: isAppleRedux, icon: appleRedux },
     android: { value: isAndroidRedux, icon: androidRedux },
     playstation: { value: isPlaystationRedux, icon: playstationRedux },
-    discount: productDiscountRedux,
+    discount: Number(productDiscountRedux),
     description: productDescriptionRedux,
   };
 

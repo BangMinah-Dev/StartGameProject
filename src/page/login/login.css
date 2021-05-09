@@ -56,16 +56,16 @@
 }
 
 .login-option {
-  width: 50%;
   margin: 0 auto;
   margin-bottom: 25px;
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
 }
 
 .login-other {
-  width: 50%;
   margin: 0 auto;
+  padding-top: 10px;
   text-align: center;
 }
 

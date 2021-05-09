@@ -4,30 +4,49 @@ import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
-import { checkLogin } from "../../API/api";
+import { DOMAIN } from "../../API/api";
 import { useHistory } from "react-router-dom";
 
 export default function LoginPage() {
-  document.title = "LOGIN";
+  document.title = "Đăng nhập";
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
   const [errMess, setErrMess] = useState("");
 
   const history = useHistory();
-  // console.log(adminEmail);
-  // console.log(adminPassword);
 
+  let account = {
+    email: adminEmail,
+    password: adminPassword,
+  };
 
   async function login() {
-    try {
-      const res = await checkLogin(adminEmail, adminPassword);
-      if (res.status === 200) {
-        history.push("/admin");
-      }
-    } catch (err) {
-      setErrMess(err.response.data.message);
-    }
+    fetch(DOMAIN + "/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "token",
+      },
+      body: JSON.stringify(account),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          return res.json();
+        } else {
+          throw new Error("Tài khoản hoặc mật khẩu không đúng");
+        }
+      })
+      .then((data) => {
+        if (data.token !== null) {
+          localStorage.setItem("token", data.token);
+          history.push("/admin");
+        }
+      })
+      .catch((err) => {
+        setErrMess(err.message);
+      });
   }
   return (
     <div>
@@ -49,16 +68,19 @@ export default function LoginPage() {
         <div className="title">Đăng Nhập Tài Khoản</div>
         <Form className="form">
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <span className="ml-5 text-danger">{errMess}</span>
+            <div className="d-flex justify-content-between">
+              <Form.Label>Email</Form.Label>
+              <div className="text-center text-danger">{errMess}</div>
+            </div>
             <Form.Control
               type="text"
               onChange={(event) => setAdminEmail(event.target.value)}
               autoFocus
             />
           </Form.Group>
+
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Mật khẩu</Form.Label>
             <Form.Control
               type="password"
               onChange={(event) => setAdminPassword(event.target.value)}
@@ -70,11 +92,12 @@ export default function LoginPage() {
           <Button variant="primary" type="button" onClick={login}>
             Đăng Nhập
           </Button>
+          <div className="login-option">
+            <a href="/">Quên Mật Khẩu</a>
+            <a href="/">Đăng Ký Ngay</a>
+          </div>
         </Form>
-        <div className="login-option">
-          <a href="/">Quên Mật Khẩu</a>
-          <a href="/">Đăng Ký Ngay</a>
-        </div>
+
         <div className="login-other">
           <div>Hoặc đăng nhập bằng các tài khoản sau</div>
           <div className="login-socials">

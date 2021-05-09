@@ -19,18 +19,20 @@ export default function NavbarCustom() {
     <>
       <Navbar className="container-fluid" expand="lg" sticky="top">
         <div className="container">
-          <Navbar.Brand href="/">
-            <div className="d-flex">
-              <img
-                className="logo-navbar"
-                src={StartGameLogo}
-                alt="Start Game Logo"
-              ></img>
-              <div className="logoName d-flex align-items-center ml-2">
-                START GAME
+          <Link to="/">
+            <Navbar.Brand>
+              <div className="d-flex">
+                <img
+                  className="logo-navbar"
+                  src={StartGameLogo}
+                  alt="Start Game Logo"
+                ></img>
+                <div className="logoName d-flex align-items-center ml-2">
+                  START GAME
+                </div>
               </div>
-            </div>
-          </Navbar.Brand>
+            </Navbar.Brand>
+          </Link>
           <div className="ml-auto search-icon-mobile" onClick={handleShow}>
             <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
           </div>
@@ -39,25 +41,25 @@ export default function NavbarCustom() {
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto mr-0">
-              <Nav.Link className="menu-item" href="/">
+              <Link to="/" className="menu-item nav-link" href="/">
                 Trang chủ
-              </Nav.Link>
+              </Link>
               <NavDropdown
                 className="menu-item"
                 title="Thể loại"
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href="/categories">Tất Cả</NavDropdown.Item>
-                <NavDropdown.Item href="">Hành Động</NavDropdown.Item>
-                <NavDropdown.Item href="">Chiến thuật</NavDropdown.Item>
-                <NavDropdown.Item href="">Nhập vai</NavDropdown.Item>
+                <Link to="/categories" className="dropdown-item">Tất Cả</Link>
+                <Link to="/news" className="dropdown-item">Hành Động</Link>
+                <Link to="/tutorial" className="dropdown-item">Chiến thuật</Link>
+                <Link to="/login" className="dropdown-item">Nhập vai</Link>
               </NavDropdown>
-              <Nav.Link className="menu-item" href="/news">
+              <Link className="menu-item nav-link" to="/news">
                 Tin tức
-              </Nav.Link>
-              <Nav.Link className="menu-item" href="/tutorial">
+              </Link>
+              <Link className="menu-item nav-link" to="/tutorial">
                 Hướng dẫn
-              </Nav.Link>
+              </Link>
               <div className="d-flex justify-content-start">
                 <Button className="search-icon-desktop" onClick={handleShow}>
                   <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
@@ -71,7 +73,7 @@ export default function NavbarCustom() {
                     <span>10</span>
                   </div>
                 </Nav.Link>
-                <Link to="/login">
+                <Link to="/login" className="nav-link">
                   <FontAwesomeIcon className="icon menu-item" icon={faUser} />
                 </Link>
               </div>

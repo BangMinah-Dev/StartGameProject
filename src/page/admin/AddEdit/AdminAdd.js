@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { createProduct } from "../../../API/api";
 import { useHistory } from "react-router";
-import { uploadFile } from "../../../API/api";
+import { uploadFile} from "../../../API/api";
 export default function AdminAdd() {
   const history = useHistory();
 
@@ -42,7 +42,7 @@ export default function AdminAdd() {
     apple: { value: isApple, icon: apple },
     android: { value: isAndroid, icon: android },
     playstation: { value: isPlayStation, icon: playstation },
-    discount: discount,
+    discount: Number(discount),
     description: description,
   };
 
