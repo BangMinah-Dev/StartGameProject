@@ -258,11 +258,11 @@ export default function AdminEdit() {
                 </div>
               )}
               {imageInfo === "" ? (
-                <Button className="mt-3" disabled>
+                <Button className="button-upload mt-3" disabled>
                   UPLOAD
                 </Button>
               ) : (
-                <Button className="mt-3" onClick={uploadImage}>
+                <Button className="button-upload mt-3" onClick={uploadImage}>
                   UPLOAD
                 </Button>
               )}
@@ -280,7 +280,7 @@ export default function AdminEdit() {
             />
           </Form.Group>
 
-          <Button variant="primary" type="button" onClick={updateProduct}>
+          <Button className="button-edit" type="button" onClick={updateProduct}>
             Chỉnh sửa
           </Button>
         </Form>

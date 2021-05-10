@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { createProduct } from "../../../API/api";
 import { useHistory } from "react-router";
-import { uploadFile} from "../../../API/api";
+import { uploadFile } from "../../../API/api";
 export default function AdminAdd() {
   const history = useHistory();
 
@@ -202,7 +202,7 @@ export default function AdminAdd() {
               </Form.Group>
             </div>
             <div className="col-md-6">
-              <Form.Group controlId="Thể loại">
+              <Form.Group controlId="upload">
                 <Form.Label>Chọn ảnh sản phẩm :</Form.Label>
                 <Form.Control
                   type="file"
@@ -217,11 +217,19 @@ export default function AdminAdd() {
                 </div>
               )}
               {imageInfo === "" ? (
-                <Button className="mt-3" disabled>
+                <Button
+                  className="button-upload-disable mt-3"
+                  type="button"
+                  disabled
+                >
                   UPLOAD
                 </Button>
               ) : (
-                <Button className="mt-3" onClick={uploadImage}>
+                <Button
+                  className="button-upload mt-3"
+                  type="button"
+                  onClick={uploadImage}
+                >
                   UPLOAD
                 </Button>
               )}
@@ -236,7 +244,7 @@ export default function AdminAdd() {
             />
           </Form.Group>
 
-          <Button variant="primary" type="button" onClick={addProduct}>
+          <Button className="button-add" type="button" onClick={addProduct}>
             THÊM SẢN PHẨM
           </Button>
         </Form>
