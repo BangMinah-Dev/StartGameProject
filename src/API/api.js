@@ -7,28 +7,35 @@ export const UPLOAD_PATH = DOMAIN + "/upload";
 
 // UPLOAD IMAGE
 export async function uploadFile(inputFile) {
-  fetch(UPLOAD_PATH, {
+  const res = fetch(UPLOAD_PATH, {
     method: "POST",
     body: inputFile,
-  });
+  }).then((res) => {
+    if(res.status === 200){
+      return res
+    }
+  })
+  return res
 }
 
 // ADD NEW PRODUCT
 export async function createProduct(inputData) {
-  fetch(PRODUCTS_API, {
+  const res = fetch(PRODUCTS_API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputData),
   });
+  return res
 }
 
 // EDIT PRODUCT
 export async function editProduct(inputID, inputData) {
-  fetch(PRODUCTS_API + inputID, {
+  const res = fetch(PRODUCTS_API + inputID, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputData),
   });
+  return res
 }
 
 // DELETE PRODUCT

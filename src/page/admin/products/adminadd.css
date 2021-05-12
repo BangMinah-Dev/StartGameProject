@@ -124,6 +124,24 @@
   object-fit: contain;
 }
 
+.show-content .left-content{
+  padding-right: 16px !important;
+}
+
+.show-content .right-content{
+  padding-left: 16px !important;
+}
+
+@media (max-width: 768px){
+  .show-content .left-content{
+    padding-right: 0px !important;
+  }
+  
+  .show-content .right-content{
+    padding-left: 0px !important;
+  }
+}
+
 @media (max-width: 485px){
   .platfrom-label{
     display: block !important;

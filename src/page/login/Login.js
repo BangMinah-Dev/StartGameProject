@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
 export default function LoginPage() {
   document.title = "Đăng nhập";
 
+  localStorage.clear("token")
+
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
   const [errMess, setErrMess] = useState("");

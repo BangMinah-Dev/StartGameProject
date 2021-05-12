@@ -1,9 +1,13 @@
-// import "./adminpage.css";
 import LayoutAdmin from "../../layouts/LayoutAdmin"
-// import AdminMenu from "./AdminMenu";
-// import Products from "./products/Products";
+import {useHistory} from "react-router-dom"
 export default function Admin() {
   document.title = "START GAME - ADMIN";
+
+  const history = useHistory()
+  if(localStorage.getItem("token") === null){
+    history.push("/login")
+  }
+
   return (
     <div className="container-fluid">
       <LayoutAdmin/>

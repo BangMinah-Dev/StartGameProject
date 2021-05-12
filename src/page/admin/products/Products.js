@@ -33,6 +33,10 @@ export default function Products() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  if(localStorage.getItem("token") === null){
+    history.push("/login")
+  }
+
   useEffect(() => {
     async function fetchData() {
       const res = await getProducts();
@@ -40,8 +44,6 @@ export default function Products() {
     }
     fetchData();
   }, []);
-
-  console.log(products);
 
   const [productID, setProductID] = useState("");
   const [productName, setProductName] = useState("");
@@ -168,7 +170,8 @@ export default function Products() {
   return (
     <div>
       <LayoutAdmin>
-        <h3 className=" mb-3">DANH SÁCH SẢN PHẨM</h3>
+        <div className="show-contents">
+        <h3 className="mb-3">DANH SÁCH SẢN PHẨM</h3>
         <Link to="/admin-add">
           <Button className="btn-addNew mt-1 mb-4">Thêm sản phẩm</Button>
         </Link>
@@ -195,6 +198,8 @@ export default function Products() {
           productName={productName}
           deleteItem={deleteItem}
         />
+        </div>
+
       </LayoutAdmin>
     </div>
   );

@@ -3,7 +3,7 @@ export default function LayoutAdmin({ children }) {
   return (
     <>
       <AdminMenu />
-      <div className="show-content">{children}</div>
+      {children}
     </>
   );
 }

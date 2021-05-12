@@ -7,6 +7,9 @@ import { useHistory } from "react-router";
 import { uploadFile } from "../../../API/api";
 export default function AdminAdd() {
   const history = useHistory();
+  if (localStorage.getItem("token") === null) {
+    history.push("/login");
+  }
 
   // STATE GIÁ TRỊ CÁC INPUT TRONG FORM
   const [productName, setProductName] = useState("");
@@ -29,6 +32,7 @@ export default function AdminAdd() {
   const [imageInfo, setImageInfo] = useState("");
   // STATE ĐA ĐƯỢC CHUYỂN THÀNH ĐƯỜNG DÂN LOCAL
   const [imagePreview, setImagePreview] = useState("");
+  const [messImage, setMessImage] = useState("");
 
   // Lấy ra tên ảnh để lưu vào database
   let imageName = imageInfo.name;
@@ -46,9 +50,12 @@ export default function AdminAdd() {
     description: description,
   };
 
-  function addProduct() {
-    createProduct(data);
-    history.push("/admin-products");
+  async function addProduct() {
+    const res = await createProduct(data);
+    console.log(res);
+    if (res.status === 201) {
+      history.push("/admin-products");
+    }
   }
 
   //
@@ -66,10 +73,14 @@ export default function AdminAdd() {
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  function uploadImage() {
+  async function uploadImage() {
     let imgFile = new FormData();
     imgFile.append("file", imageInfo);
-    uploadFile(imgFile);
+    const res = await uploadFile(imgFile);
+
+    if (res.status === 200) {
+      setMessImage("Upload thành công");
+    }
   }
 
   function checkWindows(event) {
@@ -116,10 +127,10 @@ export default function AdminAdd() {
     <div>
       <LayoutAdmin />
       <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
-      <div className="show-content">
+      <div className="container show-content">
         <Form className="mt-2">
           <div className="row">
-            <div className="col-md-6">
+            <div className="left-content col-md-6">
               <Form.Group controlId="Tên sản phẩm">
                 <Form.Label>Tên sản phẩm</Form.Label>
                 <Form.Control
@@ -201,7 +212,7 @@ export default function AdminAdd() {
                 />
               </Form.Group>
             </div>
-            <div className="col-md-6">
+            <div className="right-content col-md-6">
               <Form.Group controlId="upload">
                 <Form.Label>Chọn ảnh sản phẩm :</Form.Label>
                 <Form.Control
@@ -216,23 +227,24 @@ export default function AdminAdd() {
                   <img src={imagePreview} alt={imageName}></img>{" "}
                 </div>
               )}
-              {imageInfo === "" ? (
-                <Button
-                  className="button-upload-disable mt-3"
-                  type="button"
-                  disabled
-                >
-                  UPLOAD
-                </Button>
-              ) : (
-                <Button
-                  className="button-upload mt-3"
-                  type="button"
-                  onClick={uploadImage}
-                >
-                  UPLOAD
-                </Button>
-              )}
+                {imageInfo === "" ? (
+                  <Button
+                    className="button-upload-disable mt-3"
+                    type="button"
+                    disabled
+                  >
+                    UPLOAD
+                  </Button>
+                ) : (
+                  <Button
+                    className="button-upload mt-3"
+                    type="button"
+                    onClick={uploadImage}
+                  >
+                    UPLOAD
+                  </Button>
+                )}
+                <div className="ml-3 pt-3">{messImage}</div>
             </div>
           </div>
           <Form.Group controlId="Mô tả sản phẩm">

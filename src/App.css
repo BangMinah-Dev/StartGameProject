@@ -16,3 +16,10 @@ a:hover {
   cursor: pointer;
   text-decoration: none !important;
 }
+
+.row{
+  padding: 0px !important;
+}
+.col-md-6{
+  padding: 0px !important;
+}
