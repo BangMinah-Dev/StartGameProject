@@ -6,6 +6,7 @@ import { Table, Button } from "react-bootstrap";
 import ModalDelete from "../../../components/modal/ModalDelete";
 import { UPLOAD_PATH, getProducts, deleteProduct } from "../../../API/api";
 import { Link, useHistory } from "react-router-dom";
+import LayoutAdmin from "../../../layouts/LayoutAdmin";
 
 import {
   updateID,
@@ -22,7 +23,7 @@ import {
   updateWindowsIcon,
   updateAppleIcon,
   updateAndroidIcon,
-  updatePlayStationIcon
+  updatePlayStationIcon,
 } from ".././../../redux/sliceProductDetails";
 import { useDispatch } from "react-redux";
 
@@ -39,6 +40,8 @@ export default function Products() {
     }
     fetchData();
   }, []);
+
+  console.log(products);
 
   const [productID, setProductID] = useState("");
   const [productName, setProductName] = useState("");
@@ -73,10 +76,10 @@ export default function Products() {
     windowsIcon,
     appleIcon,
     androidIcon,
-    playstationIcon,
+    playstationIcon
   ) {
     dispatch(updateID(id));
-    dispatch(updateProductImage(image))
+    dispatch(updateProductImage(image));
     dispatch(updateName(name));
     dispatch(updatePrice(price));
     dispatch(updateCategory(category));
@@ -86,10 +89,10 @@ export default function Products() {
     dispatch(updateApple(apple));
     dispatch(updateAndroid(android));
     dispatch(updatePlayStation(playstation));
-    dispatch(updateWindowsIcon(windowsIcon))
-    dispatch(updateAppleIcon(appleIcon))
-    dispatch(updateAndroidIcon(androidIcon))
-    dispatch(updatePlayStationIcon(playstationIcon))
+    dispatch(updateWindowsIcon(windowsIcon));
+    dispatch(updateAppleIcon(appleIcon));
+    dispatch(updateAndroidIcon(androidIcon));
+    dispatch(updatePlayStationIcon(playstationIcon));
     history.push("./admin-edit");
   }
 
@@ -144,7 +147,7 @@ export default function Products() {
               product.windows.icon,
               product.apple.icon,
               product.android.icon,
-              product.playstation.icon,
+              product.playstation.icon
             )
           }
         >
@@ -164,33 +167,35 @@ export default function Products() {
 
   return (
     <div>
-      <h3 className=" mb-3">DANH SÁCH SẢN PHẨM</h3>
-      <Link to="/admin-add">
-        <Button className="btn-addNew mt-1 mb-4">Thêm sản phẩm</Button>
-      </Link>
-      <Table bordered hover responsive>
-        <thead className="text-center">
-          <tr>
-            <th>ID</th>
-            <th>ẢNH GAME</th>
-            <th>TÊN GAME</th>
-            <th>GIÁ TIỀN</th>
-            <th>THỂ LOẠI</th>
-            <th>NỀN TẢNG</th>
-            <th className="des">MÔ TẢ</th>
-            <th>GIẢM GIÁ</th>
-            <th colSpan="2">CHỨC NĂNG</th>
-          </tr>
-        </thead>
-        <tbody>{productsList}</tbody>
-      </Table>
-      <ModalDelete
-        show={show}
-        handleShow={handleShow}
-        handleClose={handleClose}
-        productName={productName}
-        deleteItem={deleteItem}
-      />
+      <LayoutAdmin>
+        <h3 className=" mb-3">DANH SÁCH SẢN PHẨM</h3>
+        <Link to="/admin-add">
+          <Button className="btn-addNew mt-1 mb-4">Thêm sản phẩm</Button>
+        </Link>
+        <Table bordered hover responsive>
+          <thead className="text-center">
+            <tr>
+              <th>ID</th>
+              <th>ẢNH GAME</th>
+              <th>TÊN GAME</th>
+              <th>GIÁ TIỀN</th>
+              <th>THỂ LOẠI</th>
+              <th>NỀN TẢNG</th>
+              <th className="des">MÔ TẢ</th>
+              <th>GIẢM GIÁ</th>
+              <th colSpan="2">CHỨC NĂNG</th>
+            </tr>
+          </thead>
+          <tbody>{productsList}</tbody>
+        </Table>
+        <ModalDelete
+          show={show}
+          handleShow={handleShow}
+          handleClose={handleClose}
+          productName={productName}
+          deleteItem={deleteItem}
+        />
+      </LayoutAdmin>
     </div>
   );
 }

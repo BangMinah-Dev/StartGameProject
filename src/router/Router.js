@@ -5,12 +5,17 @@ import Tutorial from "../page/tutorial/Tutorial";
 import Categories from "../page/categories/categories";
 import LoginPage from "../page/login/Login";
 import AdminPage from "../page/admin/AdminPage";
-import AdminAdd from "../page/admin/AddEdit/AdminAdd";
-import AdminEdit from "../page/admin/AddEdit/AdminEdit";
+import AdminAdd from "../page/admin/products/AdminAdd"
+import AdminEdit from "../page/admin/products/AdminEdit"
+import Products from "../page/admin/products/Products"
+import Cart from "../page/cart/Cart";
 export default function router() {
   return (
     <Router>
       <Switch>
+        <Route path="/admin-products">
+          <Products />
+        </Route>
         <Route path="/admin-edit">
           <AdminEdit />
         </Route>
@@ -19,6 +24,9 @@ export default function router() {
         </Route>
         <Route path="/admin">
           <AdminPage />
+        </Route>
+        <Route path="/cart">
+          <Cart />
         </Route>
         <Route path="/login">
           <LoginPage />

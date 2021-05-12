@@ -1,5 +1,5 @@
 import "./adminadd.css";
-import AdminMenu from "../AdminMenu";
+import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { createProduct } from "../../../API/api";
@@ -48,7 +48,7 @@ export default function AdminAdd() {
 
   function addProduct() {
     createProduct(data);
-    history.push("/admin");
+    history.push("/admin-products");
   }
 
   //
@@ -114,7 +114,7 @@ export default function AdminAdd() {
 
   return (
     <div>
-      <AdminMenu />
+      <LayoutAdmin />
       <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
       <div className="show-content">
         <Form className="mt-2">

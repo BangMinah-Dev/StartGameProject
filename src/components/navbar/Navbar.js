@@ -57,14 +57,14 @@ export default function NavbarCustom() {
               <Link className="menu-item nav-link" to="/news">
                 Tin tức
               </Link>
-              <Link className="menu-item nav-link" to="/tutorial">
+              <Link className="menu-item nav-link" to="/admin">
                 Hướng dẫn
               </Link>
               <div className="d-flex justify-content-start">
                 <Button className="search-icon-desktop" onClick={handleShow}>
                   <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
                 </Button>
-                <Link to="/" className="cart nav-link">
+                <Link to="/cart" className="cart nav-link">
                   <FontAwesomeIcon
                     className="icon menu-item"
                     icon={faShoppingCart}

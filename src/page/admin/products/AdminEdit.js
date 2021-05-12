@@ -1,4 +1,5 @@
-import AdminMenu from "../AdminMenu";
+import "./adminadd.css";
+import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -80,7 +81,7 @@ export default function AdminEdit() {
   // EDIT PRODUCT
   function updateProduct() {
     editProduct(productID, data);
-    history.push("/admin");
+    history.push("/admin-products");
   }
 
   //
@@ -147,7 +148,7 @@ export default function AdminEdit() {
 
   return (
     <div>
-      <AdminMenu />
+      <LayoutAdmin />
       <h1 className="mt-4 text-center">Sửa sản phẩm</h1>
       <div className="show-content">
         <Form className="mt-2">
