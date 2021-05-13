@@ -1,6 +1,6 @@
 import "./adminadd.css";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -41,12 +41,12 @@ import { uploadFile, editProduct, UPLOAD_PATH } from "../../../API/api";
 export default function AdminEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
-  if(localStorage.getItem("token") === null){
-    history.push("/login")
+  if (localStorage.getItem("token") === null) {
+    history.push("/login");
   }
 
   const productID = useSelector(selectID);
-  const productImage = useSelector(selectProductImage)
+  const productImage = useSelector(selectProductImage);
   const productNameRedux = useSelector(selectName);
   const productPriceRedux = useSelector(selectPrice);
   const productCategoryRedux = useSelector(selectCategory);
@@ -68,6 +68,7 @@ export default function AdminEdit() {
   // STATE ĐA ĐƯỢC CHUYỂN THÀNH ĐƯỜNG DÂN LOCAL
   const [imagePreview, setImagePreview] = useState("");
   const [messImage, setMessImage] = useState("");
+  const [upLoading, setUpLoading] = useState(false);
 
 
   let data = {
@@ -86,7 +87,7 @@ export default function AdminEdit() {
   // EDIT PRODUCT
   async function updateProduct() {
     const res = await editProduct(productID, data);
-    if(res.status === 200){
+    if (res.status === 200) {
       history.push("/admin-products");
     }
   }
@@ -94,7 +95,7 @@ export default function AdminEdit() {
   //
   function previewImage(event) {
     setImageInfo(event.target.files[0]);
-    dispatch(updateProductImage(event.target.files[0].name))
+    dispatch(updateProductImage(event.target.files[0].name));
     if (event.target.files[0]) {
       setImagePreview(event.target.files[0]);
     }
@@ -108,10 +109,12 @@ export default function AdminEdit() {
   }
 
   async function uploadImage() {
+    setUpLoading(true)
     let imgFile = new FormData();
     imgFile.append("file", imageInfo);
     const res = await uploadFile(imgFile);
     if (res.status === 200) {
+      setUpLoading(false)
       setMessImage("Upload thành công");
     }
   }
@@ -160,7 +163,7 @@ export default function AdminEdit() {
     <div className="form">
       <LayoutAdmin />
       <h1 className="mt-4 text-center">Sửa sản phẩm</h1>
-      <div className="container show-content">
+      <div className="show-content">
         <Form className="mt-2">
           <div className="row">
             <div className="left-content col-md-6">
@@ -195,7 +198,7 @@ export default function AdminEdit() {
               <Form.Group className="d-flex platfrom-label">
                 <Form.Label className="mr-2">Nền Tảng :</Form.Label>
                 {["checkbox"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-3 d-flex flex-wrap">
+                  <div key={`inline-${type}`} className="d-flex flex-wrap">
                     <Form.Check
                       inline
                       label="Windows"
@@ -261,23 +264,40 @@ export default function AdminEdit() {
               </Form.Group>
               {imagePreview === "" ? (
                 <div className="preview-image">
-                  <img src={UPLOAD_PATH + "/" + productImage} alt={productImage}></img>
+                  <img
+                    src={UPLOAD_PATH + "/" + productImage}
+                    alt={productImage}
+                  ></img>
                 </div>
               ) : (
                 <div className="preview-image">
                   <img src={imagePreview} alt={productImage}></img>
                 </div>
               )}
-              {imageInfo === "" ? (
-                <Button className="button-upload-disable mt-3" disabled>
-                  UPLOAD
-                </Button>
-              ) : (
-                <Button className="button-upload mt-3" onClick={uploadImage}>
-                  UPLOAD
-                </Button>
-              )}
-                <span className="ml-3">{messImage}</span>
+              <div className="d-flex">
+                {imageInfo === "" ? (
+                  <Button className="button-upload-disable mt-3" disabled>
+                    UPLOAD
+                  </Button>
+                ) : (
+                  <Button className="button-upload mt-3" onClick={uploadImage}>
+                    UPLOAD
+                    {upLoading === true ? (
+                      <Spinner
+                        className="upload-icon"
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </Button>
+                )}
+                <div className="upload-done mt-4 ml-3">{messImage}</div>
+              </div>
             </div>
           </div>
           <Form.Group controlId="Mô tả sản phẩm">

@@ -48,7 +48,6 @@ export default function Cover() {
       ></img>
     </div>
   ));
-  console.log("sliderContent : ", cover);
 
   return (
     <div>

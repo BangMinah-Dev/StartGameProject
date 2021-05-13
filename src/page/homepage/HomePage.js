@@ -7,6 +7,7 @@ import ComingSoon from "../../components/comingSoon/ComingSoon"
 import NewArrival from "../../components/newArrival/NewArrival"
 
 export default function HomePage() {
+  document.title = "Trang Chủ"
   return (
     <Layout>
       <Cover/>

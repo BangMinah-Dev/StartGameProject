@@ -79,6 +79,15 @@
   font-size: 10pt;
 }
 
+input[type=checkbox]{
+  margin-bottom: 15px;
+}
+
+.form-check-label{
+  margin-bottom: 15px;
+  margin-right: 2px;
+}
+
 .button-add,
 .button-edit,
 .button-upload,
@@ -135,6 +144,13 @@
 
 .form-label,
 .form-check-label{
+  color: #FFF;
+}
+
+.upload-icon{
+  margin: 0px 0px 2px 8px;
+}
+.upload-done{
   color: #FFF;
 }
 

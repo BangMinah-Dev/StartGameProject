@@ -6,11 +6,14 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import { DOMAIN } from "../../API/api";
 import { useHistory } from "react-router-dom";
+import {updateAvatar} from "../../redux/sliceAdminProfile"
+import { useDispatch } from "react-redux";
 
 export default function LoginPage() {
   document.title = "Đăng nhập";
 
   localStorage.clear("token")
+  const dispatch = useDispatch();
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
@@ -43,9 +46,10 @@ export default function LoginPage() {
       .then((data) => {
         if (data.token !== null) {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("avatar", data.avatar)
           history.push("/admin");
         }
-      })
+      }).then(() => dispatch(updateAvatar(localStorage.getItem("avatar"))))
       .catch((err) => {
         setErrMess(err.message);
       });

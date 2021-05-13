@@ -1,6 +1,6 @@
 import "./adminadd.css";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import { createProduct } from "../../../API/api";
 import { useHistory } from "react-router";
@@ -33,6 +33,7 @@ export default function AdminAdd() {
   // STATE ĐA ĐƯỢC CHUYỂN THÀNH ĐƯỜNG DÂN LOCAL
   const [imagePreview, setImagePreview] = useState("");
   const [messImage, setMessImage] = useState("");
+  const [upLoading, setUpLoading] = useState(false);
 
   // Lấy ra tên ảnh để lưu vào database
   let imageName = imageInfo.name;
@@ -74,12 +75,14 @@ export default function AdminAdd() {
   }
 
   async function uploadImage() {
+    setUpLoading(true);
+
     let imgFile = new FormData();
     imgFile.append("file", imageInfo);
     const res = await uploadFile(imgFile);
-
     if (res.status === 200) {
-      setMessImage("Upload thành công");
+      setMessImage("Upload thành công !");
+      setUpLoading(false);
     }
   }
 
@@ -158,7 +161,7 @@ export default function AdminAdd() {
               <Form.Group className="d-flex platfrom-label">
                 <Form.Label className="mr-2">Nền Tảng : </Form.Label>
                 {["checkbox"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-4 d-flex flex-wrap">
+                  <div key={`inline-${type}`} className="d-flex flex-wrap">
                     <Form.Check
                       inline
                       label="Windows"
@@ -227,6 +230,7 @@ export default function AdminAdd() {
                   <img src={imagePreview} alt={imageName}></img>{" "}
                 </div>
               )}
+              <div className="d-flex">
                 {imageInfo === "" ? (
                   <Button
                     className="button-upload-disable mt-3"
@@ -242,9 +246,22 @@ export default function AdminAdd() {
                     onClick={uploadImage}
                   >
                     UPLOAD
+                    {upLoading === true ? (
+                      <Spinner
+                        className="upload-icon"
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      ""
+                    )}
                   </Button>
                 )}
-                <div className="ml-3 pt-3">{messImage}</div>
+                <div className="upload-done mt-4 ml-3">{messImage}</div>
+              </div>
             </div>
           </div>
           <Form.Group controlId="Mô tả sản phẩm">
