@@ -2,7 +2,7 @@ import "./product.css";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Spinner } from "react-bootstrap";
 import ModalDelete from "../../../components/modal/ModalDelete";
 import { UPLOAD_PATH, getProducts, deleteProduct } from "../../../API/api";
 import { Link, useHistory } from "react-router-dom";
@@ -33,8 +33,8 @@ export default function Products() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  if(localStorage.getItem("token") === null){
-    history.push("/login")
+  if (localStorage.getItem("token") === null) {
+    history.push("/login");
   }
 
   useEffect(() => {
@@ -168,39 +168,44 @@ export default function Products() {
   ));
 
   return (
-    <div>
-      <LayoutAdmin>
-        <div className="show-contents">
-        <h3 className="mb-3">DANH SÁCH SẢN PHẨM</h3>
-        <Link to="/admin-add">
-          <Button className="btn-addNew mt-1 mb-4">Thêm sản phẩm</Button>
-        </Link>
-        <Table bordered hover responsive>
-          <thead className="text-center">
-            <tr>
-              <th>ID</th>
-              <th>ẢNH GAME</th>
-              <th>TÊN GAME</th>
-              <th>GIÁ TIỀN</th>
-              <th>THỂ LOẠI</th>
-              <th>NỀN TẢNG</th>
-              <th className="des">MÔ TẢ</th>
-              <th>GIẢM GIÁ</th>
-              <th colSpan="2">CHỨC NĂNG</th>
-            </tr>
-          </thead>
-          <tbody>{productsList}</tbody>
-        </Table>
-        <ModalDelete
-          show={show}
-          handleShow={handleShow}
-          handleClose={handleClose}
-          productName={productName}
-          deleteItem={deleteItem}
-        />
+    <LayoutAdmin>
+      {products.length === 0 ? (
+        <div className="d-flex justify-content-center m-5 p-5">
+          <Spinner animation="border" variant="primary" />
         </div>
-
-      </LayoutAdmin>
-    </div>
+      ) : (
+        <>
+          <div className="show-contents">
+            <h3 className="mb-3">DANH SÁCH SẢN PHẨM</h3>
+            <Link to="/admin-add">
+              <Button className="btn-addNew mt-1 mb-4">Thêm sản phẩm</Button>
+            </Link>
+            <Table bordered hover responsive>
+              <thead className="text-center">
+                <tr>
+                  <th>ID</th>
+                  <th>ẢNH GAME</th>
+                  <th>TÊN GAME</th>
+                  <th>GIÁ TIỀN</th>
+                  <th>THỂ LOẠI</th>
+                  <th>NỀN TẢNG</th>
+                  <th className="des">MÔ TẢ</th>
+                  <th>GIẢM GIÁ</th>
+                  <th colSpan="2">CHỨC NĂNG</th>
+                </tr>
+              </thead>
+              <tbody>{productsList}</tbody>
+            </Table>
+            <ModalDelete
+              show={show}
+              handleShow={handleShow}
+              handleClose={handleClose}
+              productName={productName}
+              deleteItem={deleteItem}
+            />
+          </div>
+        </>
+      )}
+    </LayoutAdmin>
   );
 }

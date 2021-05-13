@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProducts, UPLOAD_PATH } from "../../API/api";
+import { Spinner } from "react-bootstrap";
 
 export default function NewArrival() {
   const [product, setProduct] = useState([]);
@@ -70,12 +71,20 @@ export default function NewArrival() {
   return (
     <div className="container mb-5">
       <h3 className="mb-4">Game Mới Đăng</h3>
-      <div className="new-arrival">{productsList}</div>
-      <div className="d-flex justify-content-center mt-5 mb-5">
-        <Link to="/categories">
-          <button className="btn-load-more">Xem Thêm</button>
-        </Link>
-      </div>
+      {product.length === 0 ? (
+        <div className="d-flex justify-content-center m-5 p-5">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : (
+        <>
+          <div className="new-arrival">{productsList}</div>
+          <div className="d-flex justify-content-center mt-5 mb-5">
+            <Link to="/categories">
+              <button className="btn-load-more">Xem Thêm</button>
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 }
