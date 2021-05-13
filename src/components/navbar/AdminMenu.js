@@ -57,7 +57,7 @@ export default function AdminMenu() {
                 <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
               </Button>
               <Link to="/login" className="nav-link">
-                  <FontAwesomeIcon className="icon menu-item user-icon" icon={faUser} />
+                  <FontAwesomeIcon className="icon menu-item user-mobile" icon={faUser} />
                 </Link>
             </div>
           </Nav>

@@ -69,7 +69,7 @@ export default function NewArrival() {
   ));
   return (
     <div className="container mb-5">
-      <h3 className="mb-5">Game Mới Đăng</h3>
+      <h3 className="mb-4">Game Mới Đăng</h3>
       <div className="new-arrival">{productsList}</div>
       <div className="d-flex justify-content-center mt-5 mb-5">
         <Link to="/categories">

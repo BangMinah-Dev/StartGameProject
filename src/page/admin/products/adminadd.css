@@ -1,3 +1,4 @@
+
 .show-content input[type=text],
 .show-content input[type=number]{
   background-color: transparent;
@@ -132,7 +133,35 @@
   padding-left: 16px !important;
 }
 
-@media (max-width: 768px){
+.form-label,
+.form-check-label{
+  color: #FFF;
+}
+
+@media (min-width: 1367px){
+  .show-content{
+    margin: 35px auto;
+    width: 68%;
+  }
+}
+
+@media (max-width: 1366px){
+  .show-content{
+    margin: 15px 150px !important;
+  }
+  .platfrom-label{
+    display: block !important;
+  }
+}
+
+@media (max-width: 992px){
+  .form > .show-content{
+    margin: 15px auto !important;
+  }
+  
+}
+
+@media (max-width: 767.99px){
   .show-content .left-content{
     padding-right: 0px !important;
   }

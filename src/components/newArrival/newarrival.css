@@ -1,25 +1,25 @@
-.new-arrival a{
+.new-arrival a {
   color: #000 !important;
 }
 
-.new-arrival a:hover{
+.new-arrival a:hover {
   color: #5c4bce;
 }
 
-.new-arrival{
+.new-arrival {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
 
-.new-arrival .new-item{
+.new-arrival .new-item {
   overflow: hidden;
   border-radius: 8px;
 }
 
-.new-arrival .new-item .content{
-  background-color: #FFF;
+.new-arrival .new-item .content {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,7 +28,7 @@
   color: #000;
 }
 
-.new-arrival .new-item .content h4{
+.new-arrival .new-item .content h4 {
   font-size: 16px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -37,42 +37,42 @@
   font-size: 16px;
 }
 
-.new-arrival .new-item .content .cate{
+.new-arrival .new-item .content .cate {
   font-size: 12px;
 }
 
-.new-arrival .new-item .picture{
+.new-arrival .new-item .picture {
   width: 100%;
   height: 130px;
   overflow: hidden;
 }
 
-.new-arrival .new-item .picture img{
+.new-arrival .new-item .picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.new-arrival .new-item .content .button-action{
+.new-arrival .new-item .content .button-action {
   display: flex;
   justify-content: space-between;
 }
 
-.new-arrival .new-item .content .btn-price{
+.new-arrival .new-item .content .btn-price {
   width: 100%;
   margin-right: 10px;
 }
 
-.new-arrival .plat{
+.new-arrival .plat {
   display: flex;
   margin-left: -3px;
 }
 
-.new-arrival .plat .icon{
+.new-arrival .plat .icon {
   margin: 0px 5px;
 }
 
-.discount{
+.discount {
   width: 45px;
   height: 40px;
   position: absolute;
@@ -81,7 +81,7 @@
   z-index: 17;
 }
 
-.sale{
+.sale {
   width: 100%;
   height: 100%;
   background-color: #ff5b2a;
@@ -89,99 +89,100 @@
 }
 
 .sale::before,
-.sale::after{
+.sale::after {
   content: "";
   position: absolute;
   border-style: solid;
   display: block;
 }
 
-.sale::before{
+.sale::before {
   bottom: -10px;
   border-width: 10px 22px 0px 0px;
   border-color: #ff5b2a transparent transparent transparent;
 }
 
-.sale::after{
+.sale::after {
   bottom: -10px;
   right: 0;
   border-width: 0px 22px 10px 0px;
   border-color: transparent #ff5b2a transparent transparent;
 }
 
-.sale p{
-  color: #FFF;
+.sale p {
+  color: #fff;
   padding: 5px;
   text-align: center;
 }
 
-.new-arrival .content .btn-price{
+.new-arrival .content .btn-price {
   background-color: #6c5dd3;
   border-color: #6c5dd3;
 }
-.new-arrival .content .btn-price:hover{
+.new-arrival .content .btn-price:hover {
   background-color: #5c4bce;
 }
 
-.new-arrival .content .btn-cart{
+.new-arrival .content .btn-cart {
   background-color: transparent !important;
   color: #000;
   border-color: #5c4bce;
 }
 
-.new-arrival .content .btn-cart:hover{
+.new-arrival .content .btn-cart:hover {
   background-color: #5c4bce !important;
-  color: #FFF !important;
+  color: #fff !important;
 }
 
-.btn-load-more{
+.btn-load-more {
   background-color: #6c5dd3 !important;
   padding: 8px 64px;
   border: 1px solid #6c5dd3;
   border-radius: 4px;
 }
 
-.btn-load-more:hover{
+.btn-load-more:hover {
   background-color: #5c4bce !important;
   filter: drop-shadow(0px 15px 8px rgba(0, 0, 0, 0.5));
 }
 
-.btn-load-more{
-  color: #FFF;
+.btn-load-more {
+  color: #fff;
 }
 
-button:focus{
+button:focus {
   outline: 0 !important;
   box-shadow: none !important;
 }
 /*  */
 
-
-
-
-
-
 /*  */
-@media (max-width: 992px){
-  .new-arrival{
+@media (max-width: 992px) {
+  .new-arrival {
     grid-template-columns: auto auto auto;
   }
 }
 
-@media (max-width: 768px){
-  .new-arrival{
+@media (max-width: 768px) {
+  .new-arrival {
     grid-template-columns: auto auto;
   }
 }
 
-@media (max-width: 576px){
-  .new-arrival{
+@media (max-width: 576px) {
+  .new-arrival {
     grid-template-columns: auto auto;
   }
 }
 
-@media (max-width: 442px){
-  .new-arrival{
+@media (max-width: 442px) {
+  .new-arrival {
     grid-template-columns: auto;
+  }
+
+  .new-arrival .new-item .picture {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
   }
 }

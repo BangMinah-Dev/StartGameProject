@@ -124,15 +124,15 @@ export default function AdminAdd() {
   }
 
   return (
-    <div>
+    <div className="form">
       <LayoutAdmin />
       <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
-      <div className="container show-content">
+      <div className="show-content">
         <Form className="mt-2">
           <div className="row">
             <div className="left-content col-md-6">
               <Form.Group controlId="Tên sản phẩm">
-                <Form.Label>Tên sản phẩm</Form.Label>
+                <Form.Label>Tên sản phẩm :</Form.Label>
                 <Form.Control
                   type="text"
                   defaultValue=""
@@ -140,7 +140,7 @@ export default function AdminAdd() {
                 />
               </Form.Group>
               <Form.Group controlId="Giá sản phẩm">
-                <Form.Label>Giá sản phẩm</Form.Label>
+                <Form.Label>Giá sản phẩm :</Form.Label>
                 <Form.Control
                   type="text"
                   defaultValue=""
@@ -148,7 +148,7 @@ export default function AdminAdd() {
                 />
               </Form.Group>
               <Form.Group controlId="Thể loại">
-                <Form.Label>Thể loại</Form.Label>
+                <Form.Label>Thể loại : </Form.Label>
                 <Form.Control
                   type="text"
                   defaultValue=""
@@ -158,7 +158,7 @@ export default function AdminAdd() {
               <Form.Group className="d-flex platfrom-label">
                 <Form.Label className="mr-2">Nền Tảng : </Form.Label>
                 {["checkbox"].map((type) => (
-                  <div key={`inline-${type}`} className="mb-3 d-flex">
+                  <div key={`inline-${type}`} className="mb-4 d-flex flex-wrap">
                     <Form.Check
                       inline
                       label="Windows"
@@ -203,7 +203,7 @@ export default function AdminAdd() {
                 ))}
               </Form.Group>
               <Form.Group controlId="Giá giảm">
-                <Form.Label>Giá giảm ( % )</Form.Label>
+                <Form.Label>Giá giảm ( % ) :</Form.Label>
                 <Form.Control
                   type="number"
                   defaultValue={0}
@@ -248,7 +248,7 @@ export default function AdminAdd() {
             </div>
           </div>
           <Form.Group controlId="Mô tả sản phẩm">
-            <Form.Label className="mt-3">Mô tả sản phẩm</Form.Label>
+            <Form.Label className="mt-3">Mô tả sản phẩm : </Form.Label>
             <Form.Control
               as="textarea"
               rows={3}

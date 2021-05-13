@@ -1,5 +1,5 @@
 .show-contents {
-  padding: 15px 250px !important;
+  padding: 15px !important;
 }
 
 .table {
@@ -38,4 +38,8 @@ table .des {
   .admin-menu {
     padding: 0px 25px !important;
   }
+  .show-contents {
+    padding: 15px 100px !important;
+  }
 }
+

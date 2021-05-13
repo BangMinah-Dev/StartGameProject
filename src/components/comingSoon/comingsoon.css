@@ -132,7 +132,7 @@ ul.slick-dots {
 @media (max-width: 442px) {
   .poster .slide-item {
     width: 540px;
-    height: 160px;
+    height: 190px;
     overflow: hidden;
     position: relative;
     border-radius: 12px;
@@ -149,7 +149,7 @@ ul.slick-dots {
     font-size: 16px;
   }
   .poster .slide-item .gameDes {
-    display: none;
+    /* display: none; */
   }
   .poster .content .gamePlatform {
     margin: 0px;
