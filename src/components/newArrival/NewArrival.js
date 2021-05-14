@@ -73,7 +73,7 @@ export default function NewArrival() {
       <h3 className="mb-4">Game Mới Đăng</h3>
       {product.length === 0 ? (
         <div className="d-flex justify-content-center m-5 p-5">
-          <Spinner animation="border" variant="primary" />
+          <Spinner animation="border" />
         </div>
       ) : (
         <>

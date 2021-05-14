@@ -149,9 +149,14 @@ input[type=checkbox]{
 
 .upload-icon{
   margin: 0px 0px 2px 8px;
+  color: #FFF !important;
 }
 .upload-done{
   color: #FFF;
+}
+
+.spinner-border{
+  color: #6c5dd3;
 }
 
 @media (min-width: 1367px){

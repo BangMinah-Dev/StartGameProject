@@ -70,7 +70,7 @@ export default function ComingSoon() {
       <h3 className="mt-4">Sắp phát hành</h3>
       {product.length === 0 ? (
         <div className="d-flex justify-content-center m-5 p-5">
-          <Spinner animation="border" variant="primary" />
+          <Spinner animation="border" />
         </div>
       ) : (
         <Slider className="poster" {...settings}>

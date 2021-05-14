@@ -148,9 +148,9 @@ ul.slick-dots {
   .poster .slide-item .gamePrice {
     font-size: 16px;
   }
-  .poster .slide-item .gameDes {
-    /* display: none; */
-  }
+  /* .poster .slide-item .gameDes {
+    display: none;
+  } */
   .poster .content .gamePlatform {
     margin: 0px;
   }

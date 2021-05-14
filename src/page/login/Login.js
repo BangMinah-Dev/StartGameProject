@@ -11,8 +11,8 @@ import { useDispatch } from "react-redux";
 
 export default function LoginPage() {
   document.title = "Đăng nhập";
+  localStorage.clear()
 
-  localStorage.clear("token")
   const dispatch = useDispatch();
 
   const [adminEmail, setAdminEmail] = useState("");
@@ -37,7 +37,6 @@ export default function LoginPage() {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
           return res.json();
         } else {
           throw new Error("Tài khoản hoặc mật khẩu không đúng");

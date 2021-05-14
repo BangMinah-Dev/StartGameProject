@@ -115,7 +115,7 @@ export default function AdminEdit() {
     const res = await uploadFile(imgFile);
     if (res.status === 200) {
       setUpLoading(false)
-      setMessImage("Upload thành công");
+      setMessImage("Upload thành công !");
     }
   }
 
