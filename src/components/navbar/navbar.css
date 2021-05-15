@@ -1,5 +1,5 @@
 .logo-navbar {
-  width: 46px;
+  width: 46px !important;
 }
 
 .navbar{
@@ -164,6 +164,10 @@ button.close span{
 
 
 @media (max-width: 991.98px) {
+  .logo-navbar {
+    width: 50px !important;
+  }
+  
   .nav-link {
     padding: 12px 0px !important;
     margin: 0 !important;
@@ -193,13 +197,13 @@ button.close span{
   }
 
   .menu-user .navbar{
-    height: 65px;
+    height: 60px;
     position: relative;
   }
   
   .menu-user .menu-responsive{
     position: absolute;
-    top: 65px;
+    top: 60px;
     left: 0;
     right: 0;
     width: 100%;
