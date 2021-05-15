@@ -16,7 +16,7 @@ export default function NavbarCustom() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <>
+    <div className="menu-user">
       <Navbar className="container-fluid" expand="lg" sticky="top">
         <div className="container">
           <Link to="/">
@@ -39,46 +39,67 @@ export default function NavbarCustom() {
           <Navbar.Toggle className="hamburger" aria-controls="basic-navbar-nav">
             <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
           </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto mr-0">
-              <Link to="/" className="menu-item nav-link" href="/">
-                Trang chủ
-              </Link>
-              <NavDropdown
-                className="menu-item"
-                title="Thể loại"
-                id="basic-nav-dropdown"
-              >
-                <Link to="/categories" className="dropdown-item">Tất Cả</Link>
-                <Link to="/news" className="dropdown-item">Hành Động</Link>
-                <Link to="/tutorial" className="dropdown-item">Chiến thuật</Link>
-                <Link to="/login" className="dropdown-item">Nhập vai</Link>
-              </NavDropdown>
-              <Link className="menu-item nav-link" to="/news">
-                Tin tức
-              </Link>
-              <Link className="menu-item nav-link" to="/admin">
-                Hướng dẫn
-              </Link>
-              <div className="d-flex justify-content-start">
-                <Button className="search-icon-desktop" onClick={handleShow}>
-                  <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
-                </Button>
-                <Link to="/cart" className="cart nav-link">
-                  <FontAwesomeIcon
-                    className="icon menu-item"
-                    icon={faShoppingCart}
-                  />
-                  <div className="noti">
-                    <span>10</span>
+          <div className="menu-responsive">
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ml-auto mr-0">
+                <div className="container menu-content">
+                  <Link to="/" className="menu-item nav-link" href="/">
+                    Trang chủ
+                  </Link>
+                  <NavDropdown
+                    className="menu-item"
+                    title="Thể loại"
+                    id="basic-nav-dropdown"
+                  >
+                    <Link to="/categories" className="dropdown-item">
+                      Tất Cả
+                    </Link>
+                    <Link to="/news" className="dropdown-item">
+                      Hành Động
+                    </Link>
+                    <Link to="/tutorial" className="dropdown-item">
+                      Chiến thuật
+                    </Link>
+                    <Link to="/login" className="dropdown-item">
+                      Nhập vai
+                    </Link>
+                  </NavDropdown>
+                  <Link className="menu-item nav-link" to="/news">
+                    Tin tức
+                  </Link>
+                  <Link className="menu-item nav-link" to="/admin">
+                    Hướng dẫn
+                  </Link>
+                  <div className="d-flex justify-content-start">
+                    <Button
+                      className="search-icon-desktop"
+                      onClick={handleShow}
+                    >
+                      <FontAwesomeIcon
+                        className="icon menu-item"
+                        icon={faSearch}
+                      />
+                    </Button>
+                    <Link to="/cart" className="cart nav-link">
+                      <FontAwesomeIcon
+                        className="icon menu-item"
+                        icon={faShoppingCart}
+                      />
+                      <div className="noti">
+                        <span>10</span>
+                      </div>
+                    </Link>
+                    <Link to="/login" className="nav-link">
+                      <FontAwesomeIcon
+                        className="icon menu-item user-icon"
+                        icon={faUser}
+                      />
+                    </Link>
                   </div>
-                </Link>
-                <Link to="/login" className="nav-link">
-                  <FontAwesomeIcon className="icon menu-item user-icon" icon={faUser} />
-                </Link>
-              </div>
-            </Nav>
-          </Navbar.Collapse>
+                </div>
+              </Nav>
+            </Navbar.Collapse>
+          </div>
         </div>
       </Navbar>
       {/* Modal Search */}
@@ -99,6 +120,6 @@ export default function NavbarCustom() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }

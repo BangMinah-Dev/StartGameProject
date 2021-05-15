@@ -8,6 +8,8 @@
   background-color: #242731 !important;
 }
 
+
+
 .navbar-nav,
 .nav-link,
 .logoName {
@@ -189,8 +191,43 @@ button.close span{
   .navbar{
     padding: 5px 16px !important;
   }
+
+  .menu-user .navbar{
+    height: 65px;
+    position: relative;
+  }
+  
+  .menu-user .menu-responsive{
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* padding: 0px 15px; */
+    background-color: #242731 ;
+  }
+
+  .menu-user .menu-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .menu-user .dropdown-menu{
+    background-color: #242731 !important;
+    border: none !important;
+    border-left: 1px solid #6c5dd3 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
 }
 
+@media (max-width: 576px){
+  .menu-user .menu-content{
+    padding: 0px 15px;
+  }
+}
 
 @media (max-width: 319.99px){
   .logoName{
