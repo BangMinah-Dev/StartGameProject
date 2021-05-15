@@ -16,7 +16,7 @@ export default function NavbarCustom() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <div className="menu-user">
+    <div className="menu-user" sticky="top">
       <Navbar className="container-fluid" expand="lg" sticky="top">
         <div className="container">
           <Link to="/">

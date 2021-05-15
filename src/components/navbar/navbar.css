@@ -8,7 +8,12 @@
   background-color: #242731 !important;
 }
 
-
+.menu-user{
+  background-color: #212529;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
 .navbar-nav,
 .nav-link,
@@ -164,9 +169,6 @@ button.close span{
 
 
 @media (max-width: 991.98px) {
-  .logo-navbar {
-    width: 50px !important;
-  }
   
   .nav-link {
     padding: 12px 0px !important;
@@ -179,7 +181,7 @@ button.close span{
   }
 
   .user-icon{
-    margin: 0px 20px !important;
+    margin: 0px 16px !important;
     margin-bottom: 10px;
     margin-left: 12px;
   }
