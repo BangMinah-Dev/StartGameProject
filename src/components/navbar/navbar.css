@@ -169,7 +169,11 @@ button.close span{
 
 
 @media (max-width: 991.98px) {
-  
+  .logo-navbar {
+    /* width: 46px !important; */
+    height: 100% !important;
+  }
+
   .nav-link {
     padding: 12px 0px !important;
     margin: 0 !important;
