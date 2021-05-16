@@ -148,7 +148,7 @@ export default function AdminAdd() {
   // TIẾP TỤC XÓA FORM VÀ STATE
   const continueAdding = () => {
     setShow(false);
-    setImageInfo("");
+    setImageInfo(undefined);
     setMessImage("");
     setProductName("");
     setProductPrice("");
