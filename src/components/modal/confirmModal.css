@@ -1,0 +1,24 @@
+.confirm-modal-add .modal-content{
+  background-color: #FFF !important;
+  border: 1px solid #FFF !important;
+}
+
+.confirm-modal-add .modal-body{
+  color: #000;
+}
+
+.confirm-modal-add .close span{
+  color: #000 !important;
+}
+
+.confirm-modal-add .modal-footer .btn-continue{
+  background-color: #6c5dd3 !important;
+  padding: 8px 24px;
+  border: 1px solid #6c5dd3 !important;
+  border-radius: 4px;
+}
+
+.confirm-modal-add .modal-footer .btn-continue:hover {
+  background-color: #5c4bce !important;
+  border-color: #6c5dd3 !important;
+}

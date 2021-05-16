@@ -1,6 +1,7 @@
 import "./adminadd.css";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { Form, Button, Spinner } from "react-bootstrap";
+import ConfirmModalAdd from "../../../components/modal/ConfirmModalAdd";
 import { useState } from "react";
 import { createProduct } from "../../../API/api";
 import { useHistory } from "react-router";
@@ -11,7 +12,12 @@ export default function AdminAdd() {
     history.push("/login");
   }
 
+  const [show, setShow] = useState(false);
+
+  // const handleShow = () => setShow(true);
+
   // STATE GIÁ TRỊ CÁC INPUT TRONG FORM
+  const [productImage, setProductImage] = useState(undefined)
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [productCategory, setProductCategory] = useState("");
@@ -29,17 +35,16 @@ export default function AdminAdd() {
   const [isPlayStation, setIsPlayStation] = useState(false);
 
   // IMAGE
-  const [imageInfo, setImageInfo] = useState("");
+  const [imageInfo, setImageInfo] = useState(undefined);
   // STATE ĐA ĐƯỢC CHUYỂN THÀNH ĐƯỜNG DÂN LOCAL
   const [imagePreview, setImagePreview] = useState("");
   const [messImage, setMessImage] = useState("");
   const [upLoading, setUpLoading] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
 
-  // Lấy ra tên ảnh để lưu vào database
-  let imageName = imageInfo.name;
 
   let data = {
-    image: "/" + imageName,
+    image: "/" + productImage,
     name: productName,
     price: productPrice,
     category: productCategory,
@@ -52,10 +57,12 @@ export default function AdminAdd() {
   };
 
   async function addProduct() {
+    setIsAdding(true);
     const res = await createProduct(data);
-    console.log(res);
+    // console.log(res);
     if (res.status === 201) {
-      history.push("/admin-products");
+      setIsAdding(false);
+      setShow(true);
     }
   }
 
@@ -63,7 +70,11 @@ export default function AdminAdd() {
   function previewImage(event) {
     setImageInfo(event.target.files[0]);
     if (event.target.files[0]) {
+      setProductImage(event.target.files[0].name)
       setImagePreview(event.target.files[0]);
+    }else{
+      setProductImage(undefined)
+      setImagePreview(undefined)
     }
 
     const reader = new FileReader();
@@ -71,7 +82,9 @@ export default function AdminAdd() {
       setImagePreview(reader.result);
     });
 
-    reader.readAsDataURL(event.target.files[0]);
+    if(event.target.files[0] !== undefined){
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
   async function uploadImage() {
@@ -126,12 +139,42 @@ export default function AdminAdd() {
     }
   }
 
+  // HIỆN THÔNG BÁO THÊM THÀNH CÔNG
+  // BẤM TẮT CHUYỂN VỀ TRANG DANH SÁCH SẢN PHẨM
+  const handleClose = () => {
+    setShow(false);
+    history.push("/admin-products");
+  };
+  // TIẾP TỤC XÓA FORM VÀ STATE
+  const continueAdding = () => {
+    setShow(false);
+    setImageInfo("");
+    setMessImage("");
+    setProductName("");
+    setProductPrice("");
+    setProductCategory("");
+    setDiscount(0);
+    setDescription("");
+    setWindows("");
+    setApple("");
+    setAndroid("");
+    setPlaystation("");
+    setIsWindows(false);
+    setIsApple(false);
+    setIsAndroid(false);
+    setIsPlayStation(false);
+    document.getElementById("form-add").reset();
+  };
+
+  console.log("imageInfo : ",imageInfo)
+  console.log("productImage : ",productImage)
+
   return (
     <div className="form">
       <LayoutAdmin />
       <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
       <div className="show-content">
-        <Form className="mt-2">
+        <Form className="mt-2" id="form-add">
           <div className="row">
             <div className="left-content col-md-6">
               <Form.Group controlId="Tên sản phẩm">
@@ -223,15 +266,15 @@ export default function AdminAdd() {
                   onChange={(event) => previewImage(event)}
                 />
               </Form.Group>
-              {imageInfo === "" ? (
+              {imageInfo === undefined ? (
                 ""
               ) : (
                 <div className="preview-image">
-                  <img src={imagePreview} alt={imageName}></img>{" "}
+                  <img src={imagePreview} alt={productName}></img>{" "}
                 </div>
               )}
               <div className="d-flex">
-                {imageInfo === "" ? (
+                {imageInfo === undefined ? (
                   <Button
                     className="button-upload-disable mt-3"
                     type="button"
@@ -272,12 +315,30 @@ export default function AdminAdd() {
               onChange={(event) => setDescription(event.target.value)}
             />
           </Form.Group>
-
-          <Button className="button-add" type="button" onClick={addProduct}>
-            THÊM SẢN PHẨM
-          </Button>
+          {isAdding === false ? (
+            <Button className="button-add" type="button" onClick={addProduct}>
+              THÊM SẢN PHẨM
+            </Button>
+          ) : (
+            <Button className="button-add" type="button" disabled>
+              THÊM SẢN PHẨM
+              <Spinner
+                className="upload-icon"
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            </Button>
+          )}
         </Form>
       </div>
+      <ConfirmModalAdd
+        show={show}
+        handleClose={handleClose}
+        continueAdding={continueAdding}
+      ></ConfirmModalAdd>
     </div>
   );
 }

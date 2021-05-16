@@ -1,6 +1,7 @@
 import "./adminadd.css";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { Form, Button, Spinner } from "react-bootstrap";
+import ConfirmModalEdit from "../../../components/modal/ConfirmModalEdit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -45,6 +46,13 @@ export default function AdminEdit() {
     history.push("/login");
   }
 
+  const [show, setShow] = useState(false)
+  // TỰ ĐỘNG CHUYỂN VỀ TRANG DANH SÁCH SẢN PHẨM
+  if(show === true){
+    setTimeout(function(){history.push("./admin-products")}, 2500)
+  } 
+
+
   const productID = useSelector(selectID);
   const productImage = useSelector(selectProductImage);
   const productNameRedux = useSelector(selectName);
@@ -64,11 +72,13 @@ export default function AdminEdit() {
   const isPlaystationRedux = useSelector(selectPlayStation);
 
   // IMAGE
-  const [imageInfo, setImageInfo] = useState("");
+  const [imageInfo, setImageInfo] = useState(undefined);
   // STATE ĐA ĐƯỢC CHUYỂN THÀNH ĐƯỜNG DÂN LOCAL
-  const [imagePreview, setImagePreview] = useState("");
+  const [imagePreview, setImagePreview] = useState(undefined);
   const [messImage, setMessImage] = useState("");
   const [upLoading, setUpLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
 
 
   let data = {
@@ -86,26 +96,36 @@ export default function AdminEdit() {
 
   // EDIT PRODUCT
   async function updateProduct() {
+    setIsEditing(true)
     const res = await editProduct(productID, data);
     if (res.status === 200) {
-      history.push("/admin-products");
+      setIsEditing(false)
+      setShow(true)
+      // history.push("/admin-products");
     }
   }
 
   //
   function previewImage(event) {
     setImageInfo(event.target.files[0]);
-    dispatch(updateProductImage(event.target.files[0].name));
-    if (event.target.files[0]) {
+    if(event.target.files[0] !== undefined){
+      dispatch(updateProductImage(event.target.files[0].name));
       setImagePreview(event.target.files[0]);
+    }else{
+      dispatch(updateProductImage(""));
+      setImagePreview(undefined);
     }
 
     const reader = new FileReader();
+
     reader.addEventListener("load", () => {
       setImagePreview(reader.result);
     });
 
-    reader.readAsDataURL(event.target.files[0]);
+    if(event.target.files[0] !== undefined){
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    // reader.readAsDataURL(event.target.files[0]);
   }
 
   async function uploadImage() {
@@ -116,6 +136,9 @@ export default function AdminEdit() {
     if (res.status === 200) {
       setUpLoading(false)
       setMessImage("Upload thành công !");
+    }else{
+      setUpLoading(false)
+      setMessImage("Upload lỗi !")
     }
   }
 
@@ -159,6 +182,7 @@ export default function AdminEdit() {
     }
   }
 
+  console.log("imgInfo : ", imageInfo)
   return (
     <div className="form">
       <LayoutAdmin />
@@ -255,17 +279,17 @@ export default function AdminEdit() {
               </Form.Group>
             </div>
             <div className="right-content col-md-6">
-              <Form.Group controlId="Thể loại">
+              <Form.Group controlId="Ảnh sản phẩm">
                 <Form.Label>Chọn ảnh sản phẩm :</Form.Label>
                 <Form.Control
                   type="file"
                   onChange={(event) => previewImage(event)}
                 />
               </Form.Group>
-              {imagePreview === "" ? (
+              {imagePreview === undefined ? (
                 <div className="preview-image">
                   <img
-                    src={UPLOAD_PATH + "/" + productImage}
+                    src={UPLOAD_PATH + productImage}
                     alt={productImage}
                   ></img>
                 </div>
@@ -275,7 +299,7 @@ export default function AdminEdit() {
                 </div>
               )}
               <div className="d-flex">
-                {imageInfo === "" ? (
+                {imageInfo === undefined ? (
                   <Button className="button-upload-disable mt-3" disabled>
                     UPLOAD
                   </Button>
@@ -311,11 +335,25 @@ export default function AdminEdit() {
               }
             />
           </Form.Group>
-
-          <Button className="button-edit" type="button" onClick={updateProduct}>
-            Chỉnh sửa
-          </Button>
+          {isEditing === false ? (
+            <Button className="button-add" type="button" onClick={updateProduct}>
+              Chỉnh sửa
+            </Button>
+          ) : (
+            <Button className="button-add" type="button" disabled>
+              Chỉnh sửa
+              <Spinner
+                className="upload-icon"
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            </Button>
+          )}
         </Form>
+        <ConfirmModalEdit show={show}></ConfirmModalEdit>
       </div>
     </div>
   );
