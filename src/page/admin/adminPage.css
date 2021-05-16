@@ -1,12 +1,40 @@
-.mng-item{
-  border: 1px solid #FFF;
-  padding: 5px 16px 10px 16px;
+.row-report{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-column-gap : 16px;
+  grid-row-gap: 16px
 }
 
-.mng-item:first-child{
-  margin-left: 0;
+.report-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #6c5dd3;
+  color: #FFF !important;
+  width: 100%;
 }
 
-.mng-item .count-number{
-  font-size: 2rem;
+.report-item .report-content{
+  margin: 8px 16px 16px 16px;
+}
+
+.report-item .count-number{
+  font-size: 32px;
+}
+
+.report-item .report-icon img{
+  width: 50px;
+  margin: 16px;
+}
+
+@media (max-width: 1199.99px){
+  .row-report{
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 540px){
+  .row-report{
+    grid-template-columns: auto;
+  }
 }

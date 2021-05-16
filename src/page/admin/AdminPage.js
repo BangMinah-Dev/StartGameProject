@@ -1,9 +1,12 @@
-import "./adminPage.css"
+import "./adminPage.css";
 import LayoutAdmin from "../../layouts/LayoutAdmin";
 import ProductsListIcon from "../../PRSLIST.svg";
-import { useHistory } from "react-router-dom";
+import UserIcon from "../../user.svg"
+import PreOrderIcon from "../../preorder.svg"
+import SaleIcon from "../../sale.svg"
+import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../API/api";
+import { getProducts, getComingSoon } from "../../API/api";
 export default function Admin() {
   document.title = "START GAME - ADMIN";
 
@@ -13,68 +16,72 @@ export default function Admin() {
   }
 
   const [totalProduct, setTotalProduct] = useState([]);
+  const [comingsoon, setComingsoon] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const res = await getProducts();
-      setTotalProduct(res);
+      const resultGetProducts = await getProducts();
+      setTotalProduct(resultGetProducts);
+      const resultGetComingSoon = await getComingSoon();
+      setComingsoon(resultGetComingSoon);
     }
     fetchData();
   }, []);
-
   return (
     <div>
       <LayoutAdmin />
       <div className="show-contents">
         <h3 className="mt-2 mb-4">QUẢN LÝ CHUNG</h3>
-        <div className="row d-flex justify-content-between">
-          <div className="col-md-3 mb-2">
-            <div className="mng-item d-flex justify-content-between">
-              <div className="mr-1">
-                <div className="count-number">{totalProduct.length}</div>
-                <div>Số lượng game</div>
-              </div>
-              <div className="d-flex align-items-center">
-                <img src={ProductsListIcon} alt="products-list-icon" width="50px"></img>
-              </div>
-            </div>
-          </div>
+        <div className="row-report">
 
-          <div className="col-md-3 mb-2">
-            <div className="mng-item d-flex justify-content-between">
-              <div className="mr-1">
+          <Link to="/admin-products">
+            <div className="report-item">
+              <div className="report-content">
                 <div className="count-number">{totalProduct.length}</div>
-                <div>Số lượng game</div>
+                <div className="report-text">Game đang phát hành</div>
               </div>
-              <div className="d-flex align-items-center">
-                <img src={ProductsListIcon} alt="products-list-icon" width="50px"></img>
+              <div className="report-icon">
+                <img src={ProductsListIcon} alt="productsList"></img>
               </div>
             </div>
-          </div>
+          </Link>
+          
+          <Link to="/admin-products">
+            <div className="report-item">
+              <div className="report-content">
+                <div className="count-number">{comingsoon.length}</div>
+                <div className="report-text">Game sắp phát hành</div>
+              </div>
+              <div className="report-icon">
+                <img src={PreOrderIcon} alt="productsList"></img>
+              </div>
+            </div>
+          </Link>
+          
+          <Link to="/admin-products">
+            <div className="report-item">
+              <div className="report-content">
+                <div className="count-number">15</div>
+                <div className="report-text">Game đang giảm giá</div>
+              </div>
+              <div className="report-icon">
+                <img src={SaleIcon} alt="productsList"></img>
+              </div>
+            </div>
+          </Link>
 
-          <div className="col-md-3 mb-2">
-            <div className="mng-item d-flex justify-content-between">
-              <div className="mr-1">
-                <div className="count-number">{totalProduct.length}</div>
-                <div>Số lượng game</div>
+          <Link to="/admin-products">
+            <div className="report-item">
+              <div className="report-content">
+                <div className="count-number">168</div>
+                <div className="report-text">Tài khoản người dùng</div>
               </div>
-              <div className="d-flex align-items-center">
-                <img src={ProductsListIcon} alt="products-list-icon" width="50px"></img>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-3 mb-2">
-            <div className="mng-item d-flex justify-content-between">
-              <div className="mr-1">
-                <div className="count-number">{totalProduct.length}</div>
-                <div>Số lượng game</div>
-              </div>
-              <div className="d-flex align-items-center">
-                <img src={ProductsListIcon} alt="products-list-icon" width="50px"></img>
+              <div className="report-icon">
+                <img src={UserIcon} alt="productsList"></img>
               </div>
             </div>
-          </div>
+          </Link>
+          
         </div>
       </div>
     </div>

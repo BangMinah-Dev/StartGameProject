@@ -165,6 +165,8 @@ export default function AdminAdd() {
     setIsPlayStation(false);
     setProductImage(undefined)
     setImageInfo(undefined);
+    // CHẠY LÊN ĐẦU FORM
+    window.scrollTo(0,0)
   };
 
   return (
