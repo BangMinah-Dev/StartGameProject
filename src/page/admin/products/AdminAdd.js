@@ -145,8 +145,9 @@ export default function AdminAdd() {
     setShow(false);
     history.push("/admin-products");
   };
-  // TIẾP TỤC XÓA FORM VÀ STATE
+  // TIẾP TỤC THÊM SẢN PHẨM XÓA FORM VÀ STATE
   const continueAdding = () => {
+    document.getElementById("form-add").reset();
     setShow(false);
     setMessImage("");
     setProductName("");
@@ -162,13 +163,9 @@ export default function AdminAdd() {
     setIsApple(false);
     setIsAndroid(false);
     setIsPlayStation(false);
-    document.getElementById("form-add").reset();
     setProductImage(undefined)
     setImageInfo(undefined);
   };
-
-  console.log("imageInfo : ",imageInfo)
-  console.log("productImage : ",productImage)
 
   return (
     <div className="form">

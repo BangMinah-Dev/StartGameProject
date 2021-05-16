@@ -1,0 +1,12 @@
+.mng-item{
+  border: 1px solid #FFF;
+  padding: 5px 16px 10px 16px;
+}
+
+.mng-item:first-child{
+  margin-left: 0;
+}
+
+.mng-item .count-number{
+  font-size: 2rem;
+}
