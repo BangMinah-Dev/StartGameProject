@@ -148,8 +148,6 @@ export default function AdminAdd() {
   // TIẾP TỤC XÓA FORM VÀ STATE
   const continueAdding = () => {
     setShow(false);
-    setProductImage(undefined)
-    setImageInfo(undefined);
     setMessImage("");
     setProductName("");
     setProductPrice("");
@@ -165,6 +163,8 @@ export default function AdminAdd() {
     setIsAndroid(false);
     setIsPlayStation(false);
     document.getElementById("form-add").reset();
+    setProductImage(undefined)
+    setImageInfo(undefined);
   };
 
   console.log("imageInfo : ",imageInfo)
