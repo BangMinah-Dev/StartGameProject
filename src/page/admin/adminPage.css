@@ -27,6 +27,19 @@
   margin: 16px;
 }
 
+.chart-custom{
+  margin-top: 16px !important;
+}
+
+.chart-item{
+  /* margin: 0px -15px !important; */
+}
+
+.chart-custom .chart-bar{
+  /* background-color: #FFF; */
+  /* height: 400px !important; */
+}
+
 @media (max-width: 1199.99px){
   .row-report{
     grid-template-columns: auto auto;

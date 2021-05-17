@@ -1,9 +1,11 @@
 import "./adminPage.css";
 import LayoutAdmin from "../../layouts/LayoutAdmin";
 import ProductsListIcon from "../../PRSLIST.svg";
-import UserIcon from "../../user.svg"
-import PreOrderIcon from "../../preorder.svg"
-import SaleIcon from "../../sale.svg"
+import UserIcon from "../../user.svg";
+import PreOrderIcon from "../../preorder.svg";
+import SaleIcon from "../../sale.svg";
+import ChartBar from "../../components/chart/ChartBar";
+import ChartPie from "../../components/chart/ChartPie"
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProducts, getComingSoon } from "../../API/api";
@@ -33,7 +35,6 @@ export default function Admin() {
       <div className="show-contents">
         <h3 className="mt-2 mb-4">QUẢN LÝ CHUNG</h3>
         <div className="row-report">
-
           <Link to="/admin-products">
             <div className="report-item">
               <div className="report-content">
@@ -45,7 +46,7 @@ export default function Admin() {
               </div>
             </div>
           </Link>
-          
+
           <Link to="/admin-products">
             <div className="report-item">
               <div className="report-content">
@@ -57,7 +58,7 @@ export default function Admin() {
               </div>
             </div>
           </Link>
-          
+
           <Link to="/admin-products">
             <div className="report-item">
               <div className="report-content">
@@ -81,7 +82,14 @@ export default function Admin() {
               </div>
             </div>
           </Link>
-          
+        </div>
+        <div className="row chart-custom">
+          <div className="chart-item col-md-6 col-lg-8">
+            <ChartBar></ChartBar>
+          </div>
+          <div className="chart-item col-md-6 col-lg-4">
+            <ChartPie></ChartPie>
+          </div>
         </div>
       </div>
     </div>
