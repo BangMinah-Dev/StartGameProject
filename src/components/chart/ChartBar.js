@@ -48,11 +48,14 @@ export default function ChartCustom() {
     },
   });
 
-  // console.log(setBarData);
-  // console.log(setBarOptions);
+  function choXuly(){
+    setBarData("")
+    setBarOptions("")
+  }
+
   return (
     <div>
-      <h4 className="title">Biểu đồ doanh thu</h4>
+      <h4 className="title" onClick={choXuly}>Biểu đồ doanh thu</h4>
       <div className="BarChart">
         <Bar
           className="chart-bar"
