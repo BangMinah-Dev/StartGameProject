@@ -48,8 +48,8 @@ export default function ChartCustom() {
     },
   });
 
-  console.log(setBarData);
-  console.log(setBarOptions);
+  // console.log(setBarData);
+  // console.log(setBarOptions);
   return (
     <div>
       <h4 className="title">Biểu đồ doanh thu</h4>

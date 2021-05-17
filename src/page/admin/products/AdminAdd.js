@@ -99,6 +99,7 @@ export default function AdminAdd() {
     }
   }
 
+
   function checkWindows(event) {
     if (event.target.checked === true) {
       setWindows(event.target.value);

@@ -23,8 +23,9 @@ export default function Admin() {
   useEffect(() => {
     async function fetchData() {
       const resultGetProducts = await getProducts();
-      setTotalProduct(resultGetProducts);
       const resultGetComingSoon = await getComingSoon();
+
+      setTotalProduct(resultGetProducts);
       setComingsoon(resultGetComingSoon);
     }
     fetchData();
