@@ -31,7 +31,7 @@ export default function ChartPie() {
   return (
     <>
       <div className="header">
-        <h4 className="title">Pie Chart</h4>
+        <h4 className="title">Sản phẩm bán chạy</h4>
       </div>
       <Pie data={data} />
     </>
