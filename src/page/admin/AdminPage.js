@@ -17,19 +17,25 @@ export default function Admin() {
     history.push("/login");
   }
 
-  const [totalProduct, setTotalProduct] = useState([]);
-  const [comingsoon, setComingsoon] = useState([]);
+  const [dataReport, setDataReport] = useState({
+    totalProduct : [],
+    comingsoon : []
+  })
 
   useEffect(() => {
     async function fetchData() {
       const resultGetProducts = await getProducts();
       const resultGetComingSoon = await getComingSoon();
 
-      setTotalProduct(resultGetProducts);
-      setComingsoon(resultGetComingSoon);
+      setDataReport({
+        totalProduct: resultGetProducts,
+        comingsoon: resultGetComingSoon
+      })
     }
     fetchData();
   }, []);
+
+
   return (
     <div>
       <LayoutAdmin />
@@ -39,7 +45,7 @@ export default function Admin() {
           <Link to="/admin-products">
             <div className="report-item">
               <div className="report-content">
-                <div className="count-number">{totalProduct.length}</div>
+                <div className="count-number">{dataReport.totalProduct.length}</div>
                 <div className="report-text">Game đang phát hành</div>
               </div>
               <div className="report-icon">
@@ -51,7 +57,7 @@ export default function Admin() {
           <Link to="/admin-products">
             <div className="report-item">
               <div className="report-content">
-                <div className="count-number">{comingsoon.length}</div>
+                <div className="count-number">{dataReport.comingsoon.length}</div>
                 <div className="report-text">Game sắp phát hành</div>
               </div>
               <div className="report-icon">

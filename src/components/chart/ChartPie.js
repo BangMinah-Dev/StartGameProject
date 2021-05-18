@@ -28,12 +28,16 @@ export default function ChartPie() {
       },
     ],
   };
+
+  const option = {
+    color: "#FFF"
+  }
   return (
     <>
       <div className="header">
         <h4 className="title">Sản phẩm bán chạy</h4>
       </div>
-      <Pie data={data} />
+      <Pie data={data} options={option} />
     </>
   );
 }
