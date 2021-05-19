@@ -54,7 +54,7 @@ export default function Admin() {
             </div>
           </Link>
 
-          <Link to="/admin-products">
+          <Link to="/admin-comingsoon">
             <div className="report-item">
               <div className="report-content">
                 <div className="count-number">{dataReport.comingsoon.length}</div>

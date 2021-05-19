@@ -2,7 +2,7 @@
 export const DOMAIN = "https://startgamedata.herokuapp.com";
 const PRODUCTS_API = DOMAIN + "/products/";
 const COVER_API = DOMAIN + "/COVER";
-const COMINGSOON_API = DOMAIN + "/COMINGSOON";
+const COMINGSOON_API = DOMAIN + "/COMINGSOON/";
 export const UPLOAD_PATH = DOMAIN + "/upload";
 
 // UPLOAD IMAGE
@@ -16,6 +16,25 @@ export async function uploadFile(inputFile) {
     }
   })
   return res
+}
+
+
+export async function getCover() {
+  const cover = await fetch(COVER_API, {
+    method: "GET",
+  });
+  const data = cover.json();
+  return data;
+}
+
+
+// GET PRODUCTS LIST
+export async function getProducts() {
+  const products = await fetch(PRODUCTS_API + "?_sort=id&_order=desc", {
+    method: "GET",
+  });
+  const data = products.json();
+  return data;
 }
 
 // ADD NEW PRODUCT
@@ -45,13 +64,10 @@ export async function deleteProduct(inputID) {
   });
 }
 
-export async function getCover() {
-  const cover = await fetch(COVER_API, {
-    method: "GET",
-  });
-  const data = cover.json();
-  return data;
-}
+// ---------------------------------------------------- //
+
+
+
 
 // GET COMINGSOON
 export async function getComingSoon() {
@@ -62,12 +78,11 @@ export async function getComingSoon() {
   return data;
 }
 
-// GET PRODUCTS LIST
-export async function getProducts() {
-  const products = await fetch(PRODUCTS_API + "?_sort=id&_order=desc", {
-    method: "GET",
+export async function deleteComingsoon(inputID) {
+  fetch(COMINGSOON_API + inputID, {
+    method: "DELETE",
   });
-  const data = products.json();
-  return data;
 }
+
+
 

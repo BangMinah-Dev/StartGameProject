@@ -168,10 +168,11 @@ export default function Products() {
   ));
 
   return (
-    <LayoutAdmin>
+    <div>
+      <LayoutAdmin />
       {products.length === 0 ? (
         <div className="d-flex justify-content-center m-5 p-5">
-          <Spinner animation="border"/>
+          <Spinner animation="border" />
         </div>
       ) : (
         <>
@@ -206,6 +207,6 @@ export default function Products() {
           </div>
         </>
       )}
-    </LayoutAdmin>
+    </div>
   );
 }

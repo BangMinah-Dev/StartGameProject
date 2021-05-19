@@ -45,11 +45,11 @@ export default function AdminMenu() {
               <Link to="/admin-products" className="dropdown-item">
                 Sản phẩm
               </Link>
-              <Link to="/categories" className="dropdown-item">
-                Ảnh bìa
+              <Link to="/admin-comingsoon" className="dropdown-item">
+                Sắp phát hành
               </Link>
               <Link to="/categories" className="dropdown-item">
-                Sắp phát hành
+                Ảnh bìa
               </Link>
             </NavDropdown>
             <Link className="menu-item nav-link" to="/news">
