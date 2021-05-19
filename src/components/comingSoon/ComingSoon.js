@@ -53,11 +53,19 @@ export default function ComingSoon() {
           <Link to="/">{item.description}</Link>
         </div>
         <div className="gamePlatform mt-2 mb-2">
-          {item.platform.map((plat) => (
-            <button className="btn" key={plat.value}>
-              {plat.value}
-            </button>
-          ))}
+          {item.windows.icon !== "" && (
+            // <button className="btn">{item.windows.icon.replace("fab fa-windows", "Windows")}</button>
+            <button className="btn">{item.windows.icon.replace("fab fa-windows", "Windows")}</button>
+          )}
+          {item.apple.icon !== "" && (
+            <button className="btn">{item.apple.icon.replace("fab fa-apple", "Apple")}</button>
+          )}
+          {item.android.icon !== "" && (
+            <button className="btn">{item.android.icon.replace("fab fa-google-play", "Android")}</button>
+          )}
+          {item.playstation.icon !== "" && (
+            <button className="btn">{item.playstation.icon.replace("fab fa-playstation", "PS")}</button>
+          )}
         </div>
         <div className="gameOrder">
           <button className="btn">Đăng ký</button>

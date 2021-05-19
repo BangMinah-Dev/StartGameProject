@@ -82,7 +82,7 @@ export default function AdminEdit() {
 
 
   let data = {
-    image: "/" + productImage,
+    image: productImage,
     name: productNameRedux,
     price: productPriceRedux,
     category: productCategoryRedux,

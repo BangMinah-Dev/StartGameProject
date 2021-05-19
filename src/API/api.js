@@ -1,9 +1,9 @@
-// export const DOMAIN = "http://localhost:3000";
-export const DOMAIN = "https://startgamedata.herokuapp.com";
+export const DOMAIN = "http://localhost:3000";
+// export const DOMAIN = "https://startgamedata.herokuapp.com";
 const PRODUCTS_API = DOMAIN + "/products/";
 const COVER_API = DOMAIN + "/COVER";
 const COMINGSOON_API = DOMAIN + "/COMINGSOON/";
-export const UPLOAD_PATH = DOMAIN + "/upload";
+export const UPLOAD_PATH = DOMAIN + "/upload/";
 
 // UPLOAD IMAGE
 export async function uploadFile(inputFile) {
@@ -18,7 +18,7 @@ export async function uploadFile(inputFile) {
   return res
 }
 
-
+// API COVER
 export async function getCover() {
   const cover = await fetch(COVER_API, {
     method: "GET",
@@ -28,6 +28,7 @@ export async function getCover() {
 }
 
 
+// API PRODUCT
 // GET PRODUCTS LIST
 export async function getProducts() {
   const products = await fetch(PRODUCTS_API + "?_sort=id&_order=desc", {
@@ -37,7 +38,7 @@ export async function getProducts() {
   return data;
 }
 
-// ADD NEW PRODUCT
+// ADD PRODUCT
 export async function createProduct(inputData) {
   const res = fetch(PRODUCTS_API, {
     method: "POST",
@@ -66,9 +67,7 @@ export async function deleteProduct(inputID) {
 
 // ---------------------------------------------------- //
 
-
-
-
+// API COMINGSOON
 // GET COMINGSOON
 export async function getComingSoon() {
   const comingsoon = await fetch(COMINGSOON_API, {
@@ -78,6 +77,27 @@ export async function getComingSoon() {
   return data;
 }
 
+// ADD COMINGSOON
+export async function createComingsoon(inputData) {
+  const res = fetch(COMINGSOON_API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(inputData),
+  });
+  return res
+}
+
+// EDIT COMINGSOON
+export async function editComingsoon(inputID, inputData) {
+  const res = fetch(COMINGSOON_API + inputID, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(inputData),
+  });
+  return res
+}
+
+// DELETE COMINGSOON
 export async function deleteComingsoon(inputID) {
   fetch(COMINGSOON_API + inputID, {
     method: "DELETE",

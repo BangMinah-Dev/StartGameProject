@@ -1,25 +1,51 @@
-import LayoutAdmin from "../../../layouts/LayoutAdmin"
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react"
-import { Spinner, Table, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import { UPLOAD_PATH, getComingSoon, deleteComingsoon} from "../../../API/api"
+import { useEffect, useState } from "react";
+import { Table, Button, Spinner } from "react-bootstrap";
 import ModalDelete from "../../../components/modal/ModalDelete";
+import { UPLOAD_PATH, getComingSoon, deleteComingsoon } from "../../../API/api";
+import { Link, useHistory } from "react-router-dom";
+import LayoutAdmin from "../../../layouts/LayoutAdmin";
 
-export default function ComingSoon(){
-  const [comingsoon, setComingsoon] = useState([])
+import {
+  updateID,
+  updateName,
+  updateProductImage,
+  updatePrice,
+  updateCategory,
+  updateDiscount,
+  updateDescription,
+  updateWindows,
+  updateApple,
+  updateAndroid,
+  updatePlayStation,
+  updateWindowsIcon,
+  updateAppleIcon,
+  updateAndroidIcon,
+  updatePlayStationIcon,
+} from ".././../../redux/sliceProductDetails";
+import { useDispatch } from "react-redux";
+
+export default function ComingSoon() {
+  const [products, setProduct] = useState([]);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  if (localStorage.getItem("token") === null) {
+    history.push("/login");
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await getComingSoon();
+      setProduct(res);
+    }
+    fetchData();
+  }, []);
 
   const [productID, setProductID] = useState("");
   const [productName, setProductName] = useState("");
-  
-  useEffect(() => {
-    async function fetchData(){
-      const res = await getComingSoon()
-      setComingsoon(res)
-    }
-    fetchData()
-  },[])
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -30,48 +56,101 @@ export default function ComingSoon(){
   };
 
   function deleteItem() {
-    const res = comingsoon.filter((product) => product.id !== productID);
-    setComingsoon(res);
+    const res = products.filter((product) => product.id !== productID);
+    setProduct(res);
     deleteComingsoon(productID);
     setShow(false);
   }
 
-  const comingsoonList = comingsoon.map((item) => (
-    <tr key={item.id}>
-      <td>{item.id}</td>
-      <td><img src={UPLOAD_PATH + item.image} alt={item.name}></img></td>
-      <td>{item.name}</td>
-      <td>{item.price}</td>
-      <td>{item.price}</td>
-      <td>{item.platform.map((item) => (
-        <p className="plat-text" key={item.value}>{item.value}</p>
-      ))}</td>
-      <td>
-        <p className="des-text">{item.description}</p>
+  function editItem(
+    id,
+    image,
+    name,
+    price,
+    category,
+    discount,
+    description,
+    windows,
+    apple,
+    android,
+    playstation,
+    windowsIcon,
+    appleIcon,
+    androidIcon,
+    playstationIcon
+  ) {
+    dispatch(updateID(id));
+    dispatch(updateProductImage(image));
+    dispatch(updateName(name));
+    dispatch(updatePrice(price));
+    dispatch(updateCategory(category));
+    dispatch(updateDiscount(discount));
+    dispatch(updateDescription(description));
+    dispatch(updateWindows(windows));
+    dispatch(updateApple(apple));
+    dispatch(updateAndroid(android));
+    dispatch(updatePlayStation(playstation));
+    dispatch(updateWindowsIcon(windowsIcon));
+    dispatch(updateAppleIcon(appleIcon));
+    dispatch(updateAndroidIcon(androidIcon));
+    dispatch(updatePlayStationIcon(playstationIcon));
+    history.push("./admin-comingsoon-edit");
+  }
+
+  const productsList = products.map((product) => (
+    <tr key={product.id}>
+      <td>{product.id}</td>
+      <td className="product-image">
+        <img src={UPLOAD_PATH + product.image} alt={product.name}></img>
       </td>
-      <td>0%</td>
+      <td className="name-text">
+        <p>{product.name}</p>
+      </td>
+      <td>$ {product.price}</td>
+      <td>{product.category}</td>
+      <td>
+        <p className="plat-text">
+          {product.apple.icon.replace("fab fa-apple", "Apple")}
+        </p>
+        <p className="plat-text">
+          {product.android.icon.replace("fab fa-google-play", "Android")}
+        </p>
+        <p className="plat-text">
+          {product.windows.icon.replace("fab fa-windows", "Windows")}
+        </p>
+        <p className="plat-text">
+          {product.playstation.icon.replace(
+            "fab fa-playstation",
+            "Play Station"
+          )}
+        </p>
+      </td>
+      <td>
+        <p className="des-text">{product.description}</p>
+      </td>
+      <td>{product.discount}%</td>
       <td>
         <Button
           variant="success"
-          // onClick={() =>
-          //   editItem(
-          //     product.id,
-          //     product.image,
-          //     product.name,
-          //     product.price,
-          //     product.category,
-          //     product.discount,
-          //     product.description,
-          //     product.windows.value,
-          //     product.apple.value,
-          //     product.android.value,
-          //     product.playstation.value,
-          //     product.windows.icon,
-          //     product.apple.icon,
-          //     product.android.icon,
-          //     product.playstation.icon
-          //   )
-          // }
+          onClick={() =>
+            editItem(
+              product.id,
+              product.image,
+              product.name,
+              product.price,
+              product.category,
+              product.discount,
+              product.description,
+              product.windows.value,
+              product.apple.value,
+              product.android.value,
+              product.playstation.value,
+              product.windows.icon,
+              product.apple.icon,
+              product.android.icon,
+              product.playstation.icon
+            )
+          }
         >
           <FontAwesomeIcon icon={faEdit} />
         </Button>
@@ -79,17 +158,18 @@ export default function ComingSoon(){
       <td>
         <Button
           variant="danger"
-          onClick={() => handleShow(item.id, item.name)}
+          onClick={() => handleShow(product.id, product.name)}
         >
           <FontAwesomeIcon icon={faTrashAlt} />
         </Button>
       </td>
     </tr>
-  ))
-  return(
+  ));
+
+  return (
     <div>
       <LayoutAdmin />
-      {comingsoon.length === 0 ? (
+      {products.length === 0 ? (
         <div className="d-flex justify-content-center m-5 p-5">
           <Spinner animation="border" />
         </div>
@@ -97,7 +177,7 @@ export default function ComingSoon(){
         <>
           <div className="show-contents">
             <h3 className="mb-3">DANH SÁCH SẮP PHÁT HÀNH</h3>
-            <Link to="/admin-add">
+            <Link to="/admin-comingsoon-add">
               <Button className="btn-addNew mt-1 mb-4">Thêm sản phẩm</Button>
             </Link>
             <Table bordered hover responsive>
@@ -114,7 +194,7 @@ export default function ComingSoon(){
                   <th colSpan="2">CHỨC NĂNG</th>
                 </tr>
               </thead>
-              <tbody>{comingsoonList}</tbody>
+              <tbody>{productsList}</tbody>
             </Table>
             <ModalDelete
               show={show}
@@ -127,5 +207,5 @@ export default function ComingSoon(){
         </>
       )}
     </div>
-  )
+  );
 }

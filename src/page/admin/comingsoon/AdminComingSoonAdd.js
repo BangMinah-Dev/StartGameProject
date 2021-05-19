@@ -1,9 +1,9 @@
-import "./adminadd.css";
+
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { Form, Button, Spinner } from "react-bootstrap";
 import ConfirmModalAdd from "../../../components/modal/ConfirmModalAdd";
 import { useState } from "react";
-import { createProduct } from "../../../API/api";
+import { createComingsoon } from "../../../API/api";
 import { useHistory } from "react-router";
 import { uploadFile } from "../../../API/api";
 export default function AdminAdd() {
@@ -58,7 +58,7 @@ export default function AdminAdd() {
 
   async function addProduct() {
     setIsAdding(true);
-    const res = await createProduct(data);
+    const res = await createComingsoon(data);
     // console.log(res);
     if (res.status === 201) {
       setIsAdding(false);
@@ -144,7 +144,7 @@ export default function AdminAdd() {
   // BẤM TẮT CHUYỂN VỀ TRANG DANH SÁCH SẢN PHẨM
   const handleClose = () => {
     setShow(false);
-    history.push("/admin-products");
+    history.push("/admin-comingsoon");
   };
   // TIẾP TỤC THÊM SẢN PHẨM XÓA FORM VÀ STATE
   const continueAdding = () => {
@@ -173,7 +173,7 @@ export default function AdminAdd() {
   return (
     <div className="form">
       <LayoutAdmin />
-      <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
+      <h1 className="mt-4 text-center">Thêm sản phẩm A</h1>
       <div className="show-content">
         <Form className="mt-2" id="form-add">
           <div className="row">
