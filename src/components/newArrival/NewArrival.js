@@ -11,8 +11,9 @@ export default function NewArrival() {
 
   useEffect(() => {
     (async function fetchData() {
-      const res = await getProducts();
-      setProduct(res);
+      const res = await getProducts(1,12,"id","desc");
+      const data = await res.json()
+      setProduct(data);
     })();
   }, []);
 

@@ -11,11 +11,11 @@ export async function uploadFile(inputFile) {
     method: "POST",
     body: inputFile,
   }).then((res) => {
-    if(res.status === 200){
-      return res
+    if (res.status === 200) {
+      return res;
     }
-  })
-  return res
+  });
+  return res;
 }
 
 // API COVER
@@ -27,15 +27,20 @@ export async function getCover() {
   return data;
 }
 
-
 // API PRODUCT
 // GET PRODUCTS LIST
-export async function getProducts() {
-  const products = await fetch(PRODUCTS_API + "?_sort=id&_order=desc", {
-    method: "GET",
-  });
-  const data = products.json();
-  return data;
+export async function getProducts(page, pageLimit, sort, order) {
+  let pageParam = page ? `?_page=${page}` : "?";
+  let pageLimitParam = pageLimit ? `&_limit=${pageLimit}` : "?";
+  let sortParam = sort ? `&_sort=${sort}` : "";
+  let orderParam = sort ? `&_order=${order}` : "";
+  const products = await fetch(
+    `${PRODUCTS_API}${pageParam}${pageLimitParam}${sortParam}${orderParam}`,
+    {
+      method: "GET",
+    }
+  );
+  return products;
 }
 
 // ADD PRODUCT
@@ -45,7 +50,7 @@ export async function createProduct(inputData) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputData),
   });
-  return res
+  return res;
 }
 
 // EDIT PRODUCT
@@ -55,7 +60,7 @@ export async function editProduct(inputID, inputData) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputData),
   });
-  return res
+  return res;
 }
 
 // DELETE PRODUCT
@@ -84,7 +89,7 @@ export async function createComingsoon(inputData) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputData),
   });
-  return res
+  return res;
 }
 
 // EDIT COMINGSOON
@@ -94,7 +99,7 @@ export async function editComingsoon(inputID, inputData) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputData),
   });
-  return res
+  return res;
 }
 
 // DELETE COMINGSOON
@@ -103,6 +108,3 @@ export async function deleteComingsoon(inputID) {
     method: "DELETE",
   });
 }
-
-
-

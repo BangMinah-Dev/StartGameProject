@@ -26,9 +26,11 @@ export default function Admin() {
     async function fetchData() {
       const resultGetProducts = await getProducts();
       const resultGetComingSoon = await getComingSoon();
+      const dataGetProducts = await resultGetProducts.json()
+      // const dataGetComingSoon = await resultGetComingSoon.json()
 
       setDataReport({
-        totalProduct: resultGetProducts,
+        totalProduct: dataGetProducts,
         comingsoon: resultGetComingSoon
       })
     }

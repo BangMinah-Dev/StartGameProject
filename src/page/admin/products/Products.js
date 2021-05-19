@@ -7,6 +7,7 @@ import ModalDelete from "../../../components/modal/ModalDelete";
 import { UPLOAD_PATH, getProducts, deleteProduct } from "../../../API/api";
 import { Link, useHistory } from "react-router-dom";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
+import PaginationCustom from "../../../components/pagination/PaginationCustom";
 
 import {
   updateID,
@@ -29,6 +30,8 @@ import { useDispatch } from "react-redux";
 
 export default function Products() {
   const [products, setProduct] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [activePage, setActivePage] = useState(1);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,12 +42,64 @@ export default function Products() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await getProducts();
-      setProduct(res);
+      const data = await getProducts(1, 5, "id", "desc");
+      // LẤY RA MẢNG DỮ LIỆU SAU KHI FETCH
+      const resData = await data.json();
+      // LÂY RA SỐ LƯỢNG SẢN PHẨM ĐẾM ĐƯỢC
+      const resItemCount = data.headers.get("X-Total-Count");
+
+      setProduct(resData);
+      setTotalCount(resItemCount);
     }
     fetchData();
   }, []);
 
+  // PAGINATION
+  async function lastPage() {
+    const resGetProducts = await getProducts(
+      Math.ceil(totalCount / 5),
+      5,
+      "id",
+      "desc"
+    );
+    const dataProducts = await resGetProducts.json();
+    setActivePage(Math.ceil(totalCount / 5));
+    setProduct(dataProducts);
+  }
+
+  async function firstPage() {
+    const resGetProducts = await getProducts(1, 5, "id", "desc");
+    const dataProducts = await resGetProducts.json();
+    setActivePage(1);
+    setProduct(dataProducts);
+  }
+
+  async function nextPage() {
+    if (activePage <= totalCount / 5) {
+      const resGetProducts = await getProducts(activePage + 1, 5, "id", "desc");
+      const dataProducts = await resGetProducts.json();
+      setActivePage(activePage + 1);
+      setProduct(dataProducts);
+    }
+  }
+
+  async function prevPage() {
+    if(activePage > 1){
+      const resGetProducts = await getProducts(activePage - 1, 5, "id", "desc");
+      const dataProducts = await resGetProducts.json();
+      setActivePage(activePage - 1);
+      setProduct(dataProducts);
+    }
+  }
+
+  async function changePage(event){
+    const resGetProducts = await getProducts(event, 5, "id", "desc");
+    const dataProducts = await resGetProducts.json();
+    setActivePage(Number(event));
+    setProduct(dataProducts);
+  }
+
+  // MODAL
   const [productID, setProductID] = useState("");
   const [productName, setProductName] = useState("");
 
@@ -207,6 +262,17 @@ export default function Products() {
           </div>
         </>
       )}
+      <div className="d-flex justify-content-center mb-5">
+        <PaginationCustom
+          totalCount={totalCount}
+          activePage={activePage}
+          firstPage={firstPage}
+          lastPage={lastPage}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          changePage={changePage}
+        ></PaginationCustom>
+      </div>
     </div>
   );
 }
