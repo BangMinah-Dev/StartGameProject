@@ -24,7 +24,7 @@ export default function AdminProfile() {
   useEffect(() => {
     const getInfoAdmin = adminProfile.filter((admin) => admin.id === adminID);
     setArr(getInfoAdmin);
-  }, [adminProfile]);
+  }, [adminProfile],[adminID]);
 
   console.log("arr : ", arr);
 
