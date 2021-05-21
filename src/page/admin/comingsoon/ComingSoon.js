@@ -38,8 +38,9 @@ export default function ComingSoon() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await getComingSoon();
-      setProduct(res);
+      const res = await getComingSoon("", "", "id", "desc");
+      const data = await res.json();
+      setProduct(data);
     }
     fetchData();
   }, []);

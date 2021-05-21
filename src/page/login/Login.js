@@ -5,15 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import { DOMAIN } from "../../API/api";
-import { useHistory } from "react-router-dom";
-import {updateAvatar} from "../../redux/sliceAdminProfile"
-import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 export default function LoginPage() {
   document.title = "Đăng nhập";
   localStorage.clear()
-
-  const dispatch = useDispatch();
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
@@ -45,17 +41,18 @@ export default function LoginPage() {
       .then((data) => {
         if (data.token !== null) {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("adminID", data.id )
           localStorage.setItem("avatar", data.avatar)
           history.push("/admin");
         }
-      }).then(() => dispatch(updateAvatar(localStorage.getItem("avatar"))))
+      })
       .catch((err) => {
         setErrMess(err.message);
       });
   }
   return (
     <div>
-      <a href="/">
+      <Link to="/">
         <div className="container mt-3 mb-3">
           <div className="d-flex">
             <img
@@ -68,7 +65,7 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
       <div className="container login-box">
         <div className="title">Đăng Nhập Tài Khoản</div>
         <Form className="form">
@@ -98,8 +95,8 @@ export default function LoginPage() {
             Đăng Nhập
           </Button>
           <div className="login-option">
-            <a href="/">Quên Mật Khẩu</a>
-            <a href="/">Đăng Ký Ngay</a>
+            <Link to="/">Quên Mật Khẩu</Link>
+            <Link to="/">Đăng Ký Ngay</Link>
           </div>
         </Form>
 
@@ -112,21 +109,21 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="container mt-5 d-flex justify-content-center text-bottom">
-        <a href="/">
+        <Link to="/">
           <p>Điều khoản dịch vụ</p>
-        </a>
+        </Link>
         <p className="symbol mr-5 ml-5"></p>
-        <a href="/">
+        <Link to="/">
           <p>Chính sách bảo mật </p>
-        </a>
+        </Link>
         <p className="symbol mr-5 ml-5"></p>
-        <a href="/">
+        <Link to="/">
           <p>Vấn đề thường gặp </p>
-        </a>
+        </Link>
         <p className="symbol mr-5 ml-5"></p>
-        <a href="/">
+        <Link to="/">
           <p>Liên Hệ CSKH</p>
-        </a>
+        </Link>
       </div>
       <div className="container text-center d-flex justify-content-center mt-4">
         <p className="mb-0 pb-0">

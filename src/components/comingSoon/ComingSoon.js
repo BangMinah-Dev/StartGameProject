@@ -33,10 +33,12 @@ export default function ComingSoon() {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    (async function fetchData() {
-      const res = await getComingSoon();
-      setProduct(res);
-    })();
+    async function fetchData() {
+      const res = await getComingSoon("", "", "id", "desc");
+      const data = await res.json()
+      setProduct(data);
+    }
+    fetchData();
   }, []);
 
   const slideItem = product.map((item) => (
@@ -54,7 +56,6 @@ export default function ComingSoon() {
         </div>
         <div className="gamePlatform mt-2 mb-2">
           {item.windows.icon !== "" && (
-            // <button className="btn">{item.windows.icon.replace("fab fa-windows", "Windows")}</button>
             <button className="btn">{item.windows.icon.replace("fab fa-windows", "Windows")}</button>
           )}
           {item.apple.icon !== "" && (

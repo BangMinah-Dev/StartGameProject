@@ -1,9 +1,21 @@
-// export const DOMAIN = "http://localhost:3000";
-export const DOMAIN = "https://startgamedata.herokuapp.com";
+export const DOMAIN = "http://localhost:3000";
+// export const DOMAIN = "https://startgamedata.herokuapp.com";
+const ADMINPROFILE_API = DOMAIN + "/users/";
 const PRODUCTS_API = DOMAIN + "/products/";
 const COVER_API = DOMAIN + "/COVER";
 const COMINGSOON_API = DOMAIN + "/COMINGSOON/";
 export const UPLOAD_PATH = DOMAIN + "/upload/";
+
+export async function getAdminProfile(){
+  const res = fetch(ADMINPROFILE_API, {
+    method : "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${ localStorage.getItem("token") }`,
+    },
+  })
+  return res
+}
 
 // UPLOAD IMAGE
 export async function uploadFile(inputFile) {
@@ -74,12 +86,18 @@ export async function deleteProduct(inputID) {
 
 // API COMINGSOON
 // GET COMINGSOON
-export async function getComingSoon() {
-  const comingsoon = await fetch(COMINGSOON_API, {
-    method: "GET",
-  });
-  const data = comingsoon.json();
-  return data;
+export async function getComingSoon(page, pageLimit, sort, order) {
+  let pageParam = page ? `?_page=${page}` : "?";
+  let pageLimitParam = pageLimit ? `&_limit=${pageLimit}` : "?";
+  let sortParam = sort ? `&_sort=${sort}` : "";
+  let orderParam = sort ? `&_order=${order}` : "";
+  const comingsoon = await fetch(
+    `${COMINGSOON_API}${pageParam}${pageLimitParam}${sortParam}${orderParam}`,
+    {
+      method: "GET",
+    }
+  );
+  return comingsoon;
 }
 
 // ADD COMINGSOON

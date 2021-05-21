@@ -41,6 +41,7 @@ export default function Products() {
   }
 
   useEffect(() => {
+    document.title = "StartGame - Admin";
     async function fetchData() {
       const data = await getProducts(1, 5, "id", "desc");
       // LẤY RA MẢNG DỮ LIỆU SAU KHI FETCH
@@ -84,7 +85,7 @@ export default function Products() {
   }
 
   async function prevPage() {
-    if(activePage > 1){
+    if (activePage > 1) {
       const resGetProducts = await getProducts(activePage - 1, 5, "id", "desc");
       const dataProducts = await resGetProducts.json();
       setActivePage(activePage - 1);
@@ -92,7 +93,7 @@ export default function Products() {
     }
   }
 
-  async function changePage(event){
+  async function changePage(event) {
     const resGetProducts = await getProducts(event, 5, "id", "desc");
     const dataProducts = await resGetProducts.json();
     setActivePage(Number(event));
@@ -260,19 +261,19 @@ export default function Products() {
               deleteItem={deleteItem}
             />
           </div>
+          <div className="d-flex justify-content-center mb-5">
+            <PaginationCustom
+              totalCount={totalCount}
+              activePage={activePage}
+              firstPage={firstPage}
+              lastPage={lastPage}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              changePage={changePage}
+            ></PaginationCustom>
+          </div>
         </>
       )}
-      <div className="d-flex justify-content-center mb-5">
-        <PaginationCustom
-          totalCount={totalCount}
-          activePage={activePage}
-          firstPage={firstPage}
-          lastPage={lastPage}
-          nextPage={nextPage}
-          prevPage={prevPage}
-          changePage={changePage}
-        ></PaginationCustom>
-      </div>
     </div>
   );
 }

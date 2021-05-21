@@ -27,11 +27,11 @@ export default function Admin() {
       const resultGetProducts = await getProducts();
       const resultGetComingSoon = await getComingSoon();
       const dataGetProducts = await resultGetProducts.json()
-      // const dataGetComingSoon = await resultGetComingSoon.json()
+      const dataGetComingSoon = await resultGetComingSoon.json()
 
       setDataReport({
         totalProduct: dataGetProducts,
-        comingsoon: resultGetComingSoon
+        comingsoon: dataGetComingSoon
       })
     }
     fetchData();

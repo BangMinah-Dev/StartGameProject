@@ -9,13 +9,17 @@ import AdminAdd from "../page/admin/products/AdminAdd";
 import AdminEdit from "../page/admin/products/AdminEdit";
 import Products from "../page/admin/products/Products";
 import ComingSoon from "../page/admin/comingsoon/ComingSoon";
-import AdminComingSoonAdd from "../page/admin/comingsoon/AdminComingSoonAdd"
-import AdminComingSoonEdit from "../page/admin/comingsoon/AdminComingSoonEdit"
+import AdminComingSoonAdd from "../page/admin/comingsoon/AdminComingSoonAdd";
+import AdminComingSoonEdit from "../page/admin/comingsoon/AdminComingSoonEdit";
+import AdminProfile from "../page/admin/profile/AdminProfile";
 import Cart from "../page/cart/Cart";
 export default function router() {
   return (
     <Router>
       <Switch>
+        <Route path="/admin-profile">
+          <AdminProfile />
+        </Route>
         <Route path="/admin-comingsoon-edit">
           <AdminComingSoonEdit />
         </Route>

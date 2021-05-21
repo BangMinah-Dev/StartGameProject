@@ -25,6 +25,7 @@ export default function PaginationCustom({
     );
   }
 
+
   return (
     <Pagination>
       {activePage !== 1 ? (

@@ -1,13 +1,13 @@
 import "./admin.css";
 import StartGameLogo from "../../logo.svg";
-import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Button, Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { selectAvatar } from "../../redux/sliceAdminProfile";
-import { useSelector } from "react-redux";
+import { UPLOAD_PATH } from "../../API/api"
 export default function AdminMenu() {
-  const avatar = useSelector(selectAvatar);
+
+  const avatar = localStorage.getItem("avatar")
 
   return (
     <div className="container-fluid admin-menu">
@@ -58,27 +58,30 @@ export default function AdminMenu() {
             <Link className="menu-item nav-link" to="/tutorial">
               Hướng dẫn
             </Link>
-            <div className="d-flex justify-content-start">
+            <div className="searchAndUsser">
               <Button className="search-icon-desktop">
                 <FontAwesomeIcon className="icon menu-item" icon={faSearch} />
               </Button>
-              <Link to="/login" className="nav-link">
-                {avatar === "" ? (
-                  <FontAwesomeIcon
-                    className="icon menu-item user-mobile"
-                    icon={faUser}
-                  />
-                ) : (
-                  <div className="avatar-frame">
-                    <img
-              
-                      src={avatar}
-                      alt="avatar"
-                      width="20px"
+
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic" className="dropdown-avatar">
+                  {avatar === "" ? (
+                    <FontAwesomeIcon
+                      className="icon menu-item user-mobile"
+                      icon={faUser}
                     />
-                  </div>
-                )}
-              </Link>
+                  ) : (
+                    <div className="avatar-frame">
+                      <img src={UPLOAD_PATH + avatar} alt="avatar" width="20px" />
+                    </div>
+                  )}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="dropdown-user dropdown-menu-right">
+                  <Link to="/admin-profile" className="dropdown-item">Thông tin cá nhân</Link>
+                  <Link to="/login" className="dropdown-item">Đăng xuất</Link>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </Nav>
         </Navbar.Collapse>
