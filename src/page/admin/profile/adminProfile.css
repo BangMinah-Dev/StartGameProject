@@ -2,7 +2,8 @@
   color: #FFF;
 }
 .admin-profile .admin-avatar{
-  width: 100%;
+  margin-top: 10px;
+  width: 40%;
   overflow: hidden;
 }
 
@@ -30,4 +31,31 @@
   height: 100%;
   margin: 10px 0px 6px 0px;
   color: #6c5dd3;
+}
+
+.admin-profile .admin-content{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 10px 0px 6px 0px;
+}
+
+@media (max-width: 992px){
+  .admin-profile .admin-label{
+    margin: 10px 0px 6px 0px;
+  }
+  .admin-profile .admin-content{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0px 0px 6px 0px;
+  }
+}
+
+@media (max-width: 576px){
+  .admin-profile .admin-avatar{
+    /* margin: 0 auto; */
+    margin-top: 10px;
+    width: 50%;
+  }
 }
