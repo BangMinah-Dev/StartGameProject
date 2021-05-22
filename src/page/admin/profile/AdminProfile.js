@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { getAdminProfile, UPLOAD_PATH } from "../../../API/api";
 import { Button } from "react-bootstrap";
-// import { UPLOAD_PATH } from "../../../API/api"
 export default function AdminProfile() {
 
   const [adminProfile, setAdminProfile] = useState([{}]);
@@ -42,7 +41,7 @@ export default function AdminProfile() {
           </div>
           <div className="col-md-3">
             <div className="admin-avatar d-flex flex-column">
-              {arr !== "" && <img src={ UPLOAD_PATH + localStorage.getItem("avatar")} alt="Avatar"></img>}
+              {arr !== "" && <img src={ UPLOAD_PATH + arr[0]?.avatar} alt="Avatar"></img>}
               <Button className="btn mt-2 change-avatar">Thay Ảnh</Button>
             </div>
           </div>
