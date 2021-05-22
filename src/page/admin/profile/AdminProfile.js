@@ -5,7 +5,8 @@ import { getAdminProfile, UPLOAD_PATH } from "../../../API/api";
 import { Button } from "react-bootstrap";
 // import { UPLOAD_PATH } from "../../../API/api"
 export default function AdminProfile() {
-  const [adminProfile, setAdminProfile] = useState([]);
+
+  const [adminProfile, setAdminProfile] = useState([{}]);
 
   const adminID = Number(localStorage.getItem("adminID"));
 
@@ -24,7 +25,7 @@ export default function AdminProfile() {
   useEffect(() => {
     const getInfoAdmin = adminProfile.filter((admin) => admin.id === adminID);
     setArr(getInfoAdmin);
-  }, [adminProfile],[adminID]);
+  }, [adminProfile, adminID]);
 
   console.log("arr : ", arr);
 
