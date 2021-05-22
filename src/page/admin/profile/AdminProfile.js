@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { getAdminProfile, UPLOAD_PATH } from "../../../API/api";
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router";
 export default function AdminProfile() {
+
+  const history = useHistory()
   const [adminProfile, setAdminProfile] = useState([{}]);
 
   const adminID = Number(localStorage.getItem("adminID"));
@@ -16,6 +19,8 @@ export default function AdminProfile() {
       const data = await res.json();
       if (res.status === 200) {
         setAdminProfile(data);
+      }else{
+        history.push("/login")
       }
     })();
   }, []);
