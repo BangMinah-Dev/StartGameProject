@@ -186,7 +186,7 @@ export default function AdminEdit() {
   return (
     <div className="form">
       <LayoutAdmin />
-      <h1 className="mt-4 text-center">Sửa sản phẩm A</h1>
+      <h1 className="mt-4 text-center">Sửa sản phẩm</h1>
       <div className="show-content">
         <Form className="mt-2">
           <div className="row">

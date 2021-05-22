@@ -173,7 +173,7 @@ export default function AdminAdd() {
   return (
     <div className="form">
       <LayoutAdmin />
-      <h1 className="mt-4 text-center">Thêm sản phẩm A</h1>
+      <h1 className="mt-4 text-center">Thêm sản phẩm</h1>
       <div className="show-content">
         <Form className="mt-2" id="form-add">
           <div className="row">

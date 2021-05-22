@@ -25,8 +25,6 @@ export default function AdminProfile() {
     setArr(getInfoAdmin);
   }, [adminProfile, adminID]);
 
-  console.log("arr : ", arr);
-
   return (
     <div>
       <LayoutAdmin></LayoutAdmin>
