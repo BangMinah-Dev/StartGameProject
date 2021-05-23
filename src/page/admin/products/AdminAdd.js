@@ -6,8 +6,10 @@ import { useState } from "react";
 import { createProduct } from "../../../API/api";
 import { useHistory } from "react-router";
 import { uploadFile } from "../../../API/api";
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired"
 export default function AdminAdd() {
   const history = useHistory();
+  CheckTokenExpired()
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }

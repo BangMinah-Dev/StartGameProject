@@ -9,9 +9,11 @@ import ChartPie from "../../components/chart/ChartPie"
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProducts, getComingSoon } from "../../API/api";
-export default function Admin() {
-  document.title = "START GAME - ADMIN";
+import { CheckTokenExpired } from "../../js/CheckTokenExpired"
 
+export default function Admin() {
+
+  CheckTokenExpired()
   const history = useHistory();
   if (localStorage.getItem("token") === null) {
     history.push("/login");
@@ -23,6 +25,8 @@ export default function Admin() {
   })
 
   useEffect(() => {
+    document.title = "StartGame - Admin";
+
     async function fetchData() {
       const resultGetProducts = await getProducts();
       const resultGetComingSoon = await getComingSoon();

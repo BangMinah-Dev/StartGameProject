@@ -14,6 +14,7 @@ export async function getAdminProfile(){
       Authorization: `Bearer ${ localStorage.getItem("token") }`,
     },
   })
+  // console.log(res)
   return res
 }
 

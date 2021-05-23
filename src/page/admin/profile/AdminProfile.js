@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { getAdminProfile, UPLOAD_PATH } from "../../../API/api";
 import { Button } from "react-bootstrap";
+
 export default function AdminProfile() {
   const [adminProfile, setAdminProfile] = useState([{}]);
 
   const adminID = Number(localStorage.getItem("adminID"));
 
-  const [arr, setArr] = useState("");
+  const [adminInfo, setAdminInfo] = useState([]);
 
   useEffect(() => {
     (async function fetchData() {
@@ -22,7 +23,7 @@ export default function AdminProfile() {
 
   useEffect(() => {
     const getInfoAdmin = adminProfile.filter((admin) => admin.id === adminID);
-    setArr(getInfoAdmin);
+    setAdminInfo(getInfoAdmin);
   }, [adminProfile, adminID]);
 
   return (
@@ -32,14 +33,14 @@ export default function AdminProfile() {
         <h2 className="text-center">Thông tin cá nhân</h2>
         <div className="row d-flex justify-content-center">
           <div className="col-md-2">
-            <div className="admin-label">
-              Ảnh đại diện
-            </div>
+            <div className="admin-label">Ảnh đại diện</div>
           </div>
           <div className="col-md-5">
             <div className="admin-avatar d-flex flex-column">
-              {arr !== "" && (
-                <img src={UPLOAD_PATH + arr[0]?.avatar} alt="Avatar"></img>
+              {adminInfo[0] === undefined ? (
+                ""
+              ) : (
+                <img src={UPLOAD_PATH + adminInfo[0]?.avatar} alt="Avatar"></img>
               )}
               <Button className="btn mt-2 change-avatar">Thay Ảnh</Button>
             </div>
@@ -51,9 +52,7 @@ export default function AdminProfile() {
             <div className="admin-label">Email : </div>
           </div>
           <div className="col-md-5">
-            <div className="admin-content">
-              {arr[0]?.email}
-            </div>
+            <div className="admin-content">{adminInfo[0]?.email}</div>
           </div>
         </div>
 
@@ -62,9 +61,7 @@ export default function AdminProfile() {
             <div className="admin-label">Mật khẩu : </div>
           </div>
           <div className="col-md-5">
-            <div className="admin-content">
-              {arr[0]?.password}
-            </div>
+            <div className="admin-content">{adminInfo[0]?.password}</div>
           </div>
         </div>
 
@@ -73,7 +70,7 @@ export default function AdminProfile() {
             <div className="admin-label">Số điện thoại : </div>
           </div>
           <div className="col-md-5">
-            <div className="admin-content">{arr[0]?.phone}</div>
+            <div className="admin-content">{adminInfo[0]?.phone}</div>
           </div>
         </div>
       </div>

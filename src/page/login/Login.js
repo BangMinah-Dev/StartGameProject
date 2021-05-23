@@ -9,7 +9,6 @@ import { Link, useHistory } from "react-router-dom";
 
 export default function LoginPage() {
   document.title = "Đăng nhập";
-  localStorage.clear()
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");

@@ -38,10 +38,15 @@ import {
 
 import { useHistory } from "react-router";
 import { uploadFile, editProduct, UPLOAD_PATH } from "../../../API/api";
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired"
 
 export default function AdminEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // KIỂM TRA TOKEN HẾT HẠN
+  CheckTokenExpired()
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }
@@ -51,7 +56,6 @@ export default function AdminEdit() {
   if(show === true){
     setTimeout(function(){history.push("./admin-products")}, 2500)
   } 
-
 
   const productID = useSelector(selectID);
   const productImage = useSelector(selectProductImage);
@@ -78,8 +82,6 @@ export default function AdminEdit() {
   const [messImage, setMessImage] = useState("");
   const [upLoading, setUpLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-
-
 
   let data = {
     image: productImage,
