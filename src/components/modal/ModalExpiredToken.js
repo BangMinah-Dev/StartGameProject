@@ -8,6 +8,7 @@ export default function ModalExpiredToken({show, handleClose}){
         onHide={handleClose}
         keyboard={false}
         className="confirm-modal-expired"
+        centered
       >
         <Modal.Header >
           <Modal.Title className="text-warning">Phiên đăng nhập hết hạn !</Modal.Title>

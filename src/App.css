@@ -28,3 +28,10 @@ a:hover {
   padding: 0px !important;
 }
 
+.modal-backdrop.show{
+  opacity: 0.7 !important;
+  background: rgba(111, 111, 111, 0.8);
+  backdrop-filter: blur(50px);
+  filter: opacity(100%);
+}
+
