@@ -6,8 +6,17 @@ import { useState } from "react";
 import { createComingsoon } from "../../../API/api";
 import { useHistory } from "react-router";
 import { uploadFile } from "../../../API/api";
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired";
+import { useDispatch } from "react-redux";
+import { updateTokenExpired } from "../../../redux/sliceAdminProfile";
 export default function AdminAdd() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  // KIỂM TRA TOKEN HẾT HẠN
+  const checkToken = CheckTokenExpired();
+  dispatch(updateTokenExpired(checkToken));
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }
@@ -59,7 +68,6 @@ export default function AdminAdd() {
   async function addProduct() {
     setIsAdding(true);
     const res = await createComingsoon(data);
-    // console.log(res);
     if (res.status === 201) {
       setIsAdding(false);
       setShow(true);

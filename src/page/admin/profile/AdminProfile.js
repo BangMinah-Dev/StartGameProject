@@ -3,8 +3,23 @@ import { useEffect, useState } from "react";
 import LayoutAdmin from "../../../layouts/LayoutAdmin";
 import { getAdminProfile, UPLOAD_PATH } from "../../../API/api";
 import { Button } from "react-bootstrap";
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired";
+import { useDispatch } from "react-redux";
+import { updateTokenExpired } from "../../../redux/sliceAdminProfile";
+import { useHistory } from "react-router";
 
 export default function AdminProfile() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  // KIỂM TRA TOKEN HẾT HẠN
+  const checkToken = CheckTokenExpired();
+  dispatch(updateTokenExpired(checkToken));
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
+  if (localStorage.getItem("token") === null) {
+    history.push("/login");
+  }
+
   const [adminProfile, setAdminProfile] = useState([{}]);
 
   const adminID = Number(localStorage.getItem("adminID"));

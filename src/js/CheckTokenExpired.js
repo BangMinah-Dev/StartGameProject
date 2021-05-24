@@ -6,11 +6,14 @@ export function CheckTokenExpired(){
 
   let token = localStorage.getItem("token");
   let decodedToken = jwt_decode(token);
-  // console.log("Decoded Token", decodedToken);
   let currentDate = new Date();
 
   if (decodedToken.exp * 1000 < currentDate.getTime()) {
-    // console.log("Token expired.");
     history.push("/login")
-  } 
+    // TRẢ VỀ GIÁ TRỊ ĐỂ HIỂN THỊ MODAL 
+    return true
+  }else{
+    return false
+  }
+
 }

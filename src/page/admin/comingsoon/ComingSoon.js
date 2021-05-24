@@ -25,6 +25,8 @@ import {
   updatePlayStationIcon,
 } from ".././../../redux/sliceProductDetails";
 import { useDispatch } from "react-redux";
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired"
+import { updateTokenExpired } from "../../../redux/sliceAdminProfile"
 
 export default function ComingSoon() {
   const [products, setProduct] = useState([]);
@@ -32,6 +34,11 @@ export default function ComingSoon() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // KIỂM TRA TOKEN HẾT HẠN
+  const checkToken = CheckTokenExpired()
+  dispatch(updateTokenExpired(checkToken))
+  
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }

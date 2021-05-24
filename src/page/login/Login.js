@@ -6,15 +6,22 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import { DOMAIN } from "../../API/api";
 import { Link, useHistory } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { selectTokenExpired } from "../../redux/sliceAdminProfile"
+import ModalExpiredToken from "../../components/modal/ModalExpiredToken"
 export default function LoginPage() {
   document.title = "Đăng nhập";
+
+  const history = useHistory();
+
+  const tokenExpired = useSelector(selectTokenExpired)
+
+  const [show, setShow] = useState(tokenExpired);
+  const handleClose = () => setShow(false);
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
   const [errMess, setErrMess] = useState("");
-
-  const history = useHistory();
 
   let account = {
     email: adminEmail,
@@ -129,6 +136,7 @@ export default function LoginPage() {
           Made by <span>Huy @ 2021</span>
         </p>
       </div>
+      <ModalExpiredToken show={show} handleClose={handleClose} />
     </div>
   );
 }

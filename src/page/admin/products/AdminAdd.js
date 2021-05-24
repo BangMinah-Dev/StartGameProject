@@ -6,10 +6,17 @@ import { useState } from "react";
 import { createProduct } from "../../../API/api";
 import { useHistory } from "react-router";
 import { uploadFile } from "../../../API/api";
-import { CheckTokenExpired } from "../../../js/CheckTokenExpired"
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired";
+import { useDispatch } from "react-redux";
+import { updateTokenExpired } from "../../../redux/sliceAdminProfile";
 export default function AdminAdd() {
   const history = useHistory();
-  CheckTokenExpired()
+  const dispatch = useDispatch();
+
+  // KIỂM TRA TOKEN HẾT HẠN
+  const checkToken = CheckTokenExpired();
+  dispatch(updateTokenExpired(checkToken));
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }
@@ -19,7 +26,7 @@ export default function AdminAdd() {
   // const handleShow = () => setShow(true);
 
   // STATE GIÁ TRỊ CÁC INPUT TRONG FORM
-  const [productImage, setProductImage] = useState(undefined)
+  const [productImage, setProductImage] = useState(undefined);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [productCategory, setProductCategory] = useState("");
@@ -43,7 +50,6 @@ export default function AdminAdd() {
   const [messImage, setMessImage] = useState("");
   const [upLoading, setUpLoading] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
-
 
   let data = {
     image: productImage,
@@ -72,11 +78,11 @@ export default function AdminAdd() {
   function previewImage(event) {
     setImageInfo(event.target.files[0]);
     if (event.target.files[0]) {
-      setProductImage(event.target.files[0].name)
+      setProductImage(event.target.files[0].name);
       setImagePreview(event.target.files[0]);
-    }else{
-      setProductImage(undefined)
-      setImagePreview(undefined)
+    } else {
+      setProductImage(undefined);
+      setImagePreview(undefined);
     }
 
     const reader = new FileReader();
@@ -84,7 +90,7 @@ export default function AdminAdd() {
       setImagePreview(reader.result);
     });
 
-    if(event.target.files[0] !== undefined){
+    if (event.target.files[0] !== undefined) {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
@@ -100,7 +106,6 @@ export default function AdminAdd() {
       setUpLoading(false);
     }
   }
-
 
   function checkWindows(event) {
     if (event.target.checked === true) {
@@ -166,10 +171,10 @@ export default function AdminAdd() {
     setIsApple(false);
     setIsAndroid(false);
     setIsPlayStation(false);
-    setProductImage(undefined)
+    setProductImage(undefined);
     setImageInfo(undefined);
     // CHẠY LÊN ĐẦU FORM
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   };
 
   return (

@@ -38,10 +38,18 @@ import {
 
 import { useHistory } from "react-router";
 import { uploadFile, editComingsoon, UPLOAD_PATH } from "../../../API/api";
+import { CheckTokenExpired } from "../../../js/CheckTokenExpired"
+import { updateTokenExpired } from "../../../redux/sliceAdminProfile"
 
 export default function AdminEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // KIỂM TRA TOKEN HẾT HẠN
+  const checkToken = CheckTokenExpired()
+  dispatch(updateTokenExpired(checkToken))
+  
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }
@@ -182,7 +190,6 @@ export default function AdminEdit() {
     }
   }
 
-  console.log("imgInfo : ", imageInfo)
   return (
     <div className="form">
       <LayoutAdmin />

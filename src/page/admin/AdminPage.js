@@ -10,11 +10,17 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProducts, getComingSoon } from "../../API/api";
 import { CheckTokenExpired } from "../../js/CheckTokenExpired"
+import { updateTokenExpired } from "../../redux/sliceAdminProfile"
+import { useDispatch } from "react-redux";
 
 export default function Admin() {
-
-  CheckTokenExpired()
   const history = useHistory();
+  const dispatch = useDispatch()
+
+  const checkToken = CheckTokenExpired()
+  
+  dispatch(updateTokenExpired(checkToken))
+
   if (localStorage.getItem("token") === null) {
     history.push("/login");
   }
@@ -26,7 +32,7 @@ export default function Admin() {
 
   useEffect(() => {
     document.title = "StartGame - Admin";
-
+    
     async function fetchData() {
       const resultGetProducts = await getProducts();
       const resultGetComingSoon = await getComingSoon();
@@ -37,8 +43,10 @@ export default function Admin() {
         totalProduct: dataGetProducts,
         comingsoon: dataGetComingSoon
       })
+
     }
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
 
