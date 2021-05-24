@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 import { getProducts, UPLOAD_PATH } from "../../API/api";
 import { Spinner } from "react-bootstrap";
 
-export default function NewArrival() {
+export default function NewArrival({page, limitItem, sort, order}) {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
     (async function fetchData() {
-      const res = await getProducts(1,12,"id","desc");
+      const res = await getProducts(page,limitItem,sort,order);
       const data = await res.json()
       setProduct(data);
     })();
+    // eslint-disable-next-line
   }, []);
 
   const productsList = product.map((item) => (
@@ -71,7 +72,6 @@ export default function NewArrival() {
   ));
   return (
     <div className="container mb-5">
-      <h3 className="mb-4">Game Mới Đăng</h3>
       {product.length === 0 ? (
         <div className="d-flex justify-content-center m-5 p-5">
           <Spinner animation="border" />

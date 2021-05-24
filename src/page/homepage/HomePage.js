@@ -13,7 +13,8 @@ export default function HomePage() {
     <Layout>
       <Cover/>
       <ComingSoon/>
-      <NewArrival/>
+      <h3 className="container mb-4">Game Mới Đăng</h3>
+      <NewArrival page={1} limitItem={12} sort={"id"} order={"desc"} />
     </Layout>
   );
 }
