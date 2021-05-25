@@ -5,10 +5,12 @@ import Layout from "../../layouts/Layout";
 import Cover from "../../components/cover/Cover"
 import ComingSoon from "../../components/comingSoon/ComingSoon"
 import NewArrival from "../../components/newArrival/NewArrival"
+import { useEffect } from "react";
 
 export default function HomePage() {
-
-  document.title = "Trang Chủ"
+  useEffect(() => {
+    document.title = "Trang Chủ"
+  },[])
   return (
     <Layout>
       <Cover/>

@@ -11,13 +11,13 @@ import { useHistory } from "react-router";
 export default function AdminProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  // KIỂM TRA TOKEN HẾT HẠN
-  const checkToken = CheckTokenExpired();
-  dispatch(updateTokenExpired(checkToken));
   // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
+  }else{
+    // KIỂM TRA TOKEN HẾT HẠN
+    const checkToken = CheckTokenExpired()
+    dispatch(updateTokenExpired(checkToken))
   }
 
   const [adminProfile, setAdminProfile] = useState([{}]);

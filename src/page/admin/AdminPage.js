@@ -15,14 +15,14 @@ import { useDispatch } from "react-redux";
 
 export default function Admin() {
   const history = useHistory();
-  const dispatch = useDispatch()
-
-  const checkToken = CheckTokenExpired()
-  
-  dispatch(updateTokenExpired(checkToken))
-
+  const dispatch = useDispatch();
+  // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
+  }else{
+    // KIỂM TRA TOKEN HẾT HẠN
+    const checkToken = CheckTokenExpired()
+    dispatch(updateTokenExpired(checkToken))
   }
 
   const [dataReport, setDataReport] = useState({

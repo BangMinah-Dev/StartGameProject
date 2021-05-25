@@ -39,9 +39,9 @@ export default function PaginationCustom({
           <Pagination.Prev />
         </>
       )}
-      {activePage !== 1 && <Pagination.Ellipsis />}
+      {activePage > 5 && <Pagination.Ellipsis />}
       {pagination}
-      {activePage !== number && <Pagination.Ellipsis />}
+      {activePage < number - 5 && <Pagination.Ellipsis />}
       <Pagination.Next onClick={nextPage} />
       <Pagination.Last onClick={lastPage} />
     </Pagination>

@@ -12,15 +12,15 @@ import { updateTokenExpired } from "../../../redux/sliceAdminProfile";
 export default function AdminAdd() {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  // KIỂM TRA TOKEN HẾT HẠN
-  const checkToken = CheckTokenExpired();
-  dispatch(updateTokenExpired(checkToken));
   // KIỂM TRA TOKEN TỒN TẠI KHÔNG
   if (localStorage.getItem("token") === null) {
     history.push("/login");
+  }else{
+    // KIỂM TRA TOKEN HẾT HẠN
+    const checkToken = CheckTokenExpired()
+    dispatch(updateTokenExpired(checkToken))
   }
-
+  
   const [show, setShow] = useState(false);
 
   // const handleShow = () => setShow(true);
