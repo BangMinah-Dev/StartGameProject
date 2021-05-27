@@ -1,21 +1,32 @@
-// export const DOMAIN = "http://localhost:3000";
-export const DOMAIN = "https://startgamedata.herokuapp.com";
+export const DOMAIN = "http://localhost:3000";
+// export const DOMAIN = "https://startgamedata.herokuapp.com";
 const ADMINPROFILE_API = DOMAIN + "/users/";
 const PRODUCTS_API = DOMAIN + "/products/";
 const COVER_API = DOMAIN + "/COVER";
 const COMINGSOON_API = DOMAIN + "/COMINGSOON/";
 export const UPLOAD_PATH = DOMAIN + "/upload/";
 
-export async function getAdminProfile(){
+export async function getAdminProfile() {
   const res = fetch(ADMINPROFILE_API, {
-    method : "GET",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${ localStorage.getItem("token") }`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-  })
-  // console.log(res)
-  return res
+  });
+  return res;
+}
+
+export async function updateAdminProfile(adminID, inputData) {
+  const res = fetch(ADMINPROFILE_API + adminID, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body : JSON.stringify({"avatar" : inputData})
+  });
+  return res;
 }
 
 // UPLOAD IMAGE
