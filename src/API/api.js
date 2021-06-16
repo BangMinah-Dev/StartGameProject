@@ -1,5 +1,5 @@
-// export const DOMAIN = "http://localhost:3000";
-export const DOMAIN = "https://startgamedata.herokuapp.com";
+export const DOMAIN = "http://localhost:3000";
+// export const DOMAIN = "https://startgamedata.herokuapp.com";
 const ADMINPROFILE_API = DOMAIN + "/users/";
 const PRODUCTS_API = DOMAIN + "/products/";
 const COVER_API = DOMAIN + "/COVER";

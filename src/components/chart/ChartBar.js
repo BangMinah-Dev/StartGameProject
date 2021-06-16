@@ -9,7 +9,7 @@ export default function ChartCustom() {
       {
         label: "Doanh Thu",
         color: "#FFF",
-        data: [50, 40, 30, 20, 10],
+        data: [30, 40, 30, 20, 10],
         backgroundColor: ["rgba(255, 206, 86, 1)"],
         borderWidth: 1,
         barThickness: 30,
@@ -54,7 +54,6 @@ export default function ChartCustom() {
     },
   });
 
-  // Deloy cho đỡ lỗi
   function choXuly() {
     setBarData("");
     setBarOptions("");
